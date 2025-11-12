@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Blog from './components/Blog'
+import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login'
 
@@ -36,6 +37,8 @@ const App = () => {
 
   return (
     <div>
+      <h1>Blogs</h1>
+      <Notification message={errorMessage} />
       <h2>Log in to application</h2>
       <form onSubmit={handleLogin}>
         <div>
