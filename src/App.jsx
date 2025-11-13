@@ -6,6 +6,7 @@ import loginService from './services/login'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
+  const [newBlog, setNewBlog] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -16,6 +17,14 @@ const App = () => {
       setBlogs( blogs )
     )  
   }, [])
+
+  const addBlog = (event) => {
+    event.preventDefault()
+
+    if(!newBlog || newBlog.length === 0) {
+      return
+    }
+  }
 
   const handleLogin = async (event) => {
     event.preventDefault()
