@@ -73,8 +73,16 @@ const App = () => {
     <div>
       <h1>Blogs</h1>
       <Notification message={errorMessage} />
+
+      {!user && loginForm()} 
+    {user && <div>
+       <p>{user.name} logged in</p>
+         {blogForm()}
+      </div>
+    }
+
       <h2>Log in to application</h2>
-      <form onSubmit={handleLogin}>
+      {/* <form onSubmit={handleLogin}>
         <div>
           username
             <input
@@ -94,7 +102,7 @@ const App = () => {
           />
         </div>
         <button type="submit">login</button>
-      </form>
+      </form> */}
 
       <h2>blogs</h2>
       {blogs.map(blog =>
