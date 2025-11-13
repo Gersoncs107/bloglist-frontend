@@ -21,4 +21,4 @@ const update = (id, newObject) => {
 };
 
 
-export default { getAll }
+export default { getAll, create, update }
