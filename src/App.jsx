@@ -18,13 +18,29 @@ const App = () => {
     )  
   }, [])
 
-  const addBlog = (event) => {
-    event.preventDefault()
+  const addBlog = async (event) => {
+        event.preventDefault()
 
-    if(!newBlog || newBlog.length === 0) {
-      
+        if (!newBlog || newBlog.trim() === '') {
+          setErrorMessage('Blog content cannot be empty')
+          setTimeout(() => setErrorMessage(null), 3000)
+          return
+        }
+
+        const blogObject = {
+         title: newBlog
+        }
+
+        try {
+          const returnedBlog = await blogService.create(blogObject)
+          setBlogs(blogs.concat(returnedBlog))
+          setNewBlog('')
+        } catch (error) {
+          console.error('Failed to create blog:', error)
+          setErrorMessage('Failed to save blog (check server).')
+          setTimeout(() => setErrorMessage(null), 5000)
+        }
     }
-  }
 
   const handleLogin = async (event) => {
     event.preventDefault()
