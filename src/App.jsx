@@ -63,7 +63,7 @@ const App = () => {
     <form onSubmit={addBlog}>
       <input
         value={newNote}
-        onChange={handleNoteChange}
+        onChange={handleBlogChange}
       />
       <button type="submit">save</button>
     </form>  
