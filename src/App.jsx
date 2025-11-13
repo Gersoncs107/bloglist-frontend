@@ -22,7 +22,7 @@ const App = () => {
     event.preventDefault()
 
     if(!newBlog || newBlog.length === 0) {
-      return
+      
     }
   }
 
