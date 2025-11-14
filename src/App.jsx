@@ -10,7 +10,6 @@ const App = () => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
-  const [likes, setLikes] = useState(0) // opcional, pode ser removido se o backend definir 0
   const [errorMessage, setErrorMessage] = useState(null)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -34,8 +33,7 @@ const App = () => {
   const blogObject = {
     title,
     author,
-    url,
-    likes: likes || 0
+    url
   }
 
   try {
@@ -44,7 +42,6 @@ const App = () => {
     setTitle('')
     setAuthor('')
     setUrl('')
-    setLikes(0)
   } catch (error) {
     console.error('Failed to create blog:', error)
     setErrorMessage('Failed to save blog. Check server or authentication.')
@@ -129,17 +126,6 @@ const App = () => {
             value={url}
             onChange={({ target }) => setUrl(target.value)}
             placeholder="https://example.com"
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Likes:
-          <input
-            type="number"
-            value={likes}
-            onChange={({ target }) => setLikes(Number(target.value))}
-            min="0"
           />
         </label>
       </div>
