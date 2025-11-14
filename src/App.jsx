@@ -8,6 +8,10 @@ import loginService from './services/login'
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [newBlog, setNewBlog] = useState('')
+  const [title, setTitle] = useState('')
+  const [author, setAuthor] = useState('')
+  const [url, setUrl] = useState('')
+  const [likes, setLikes] = useState(0) // opcional, pode ser removido se o backend definir 0
   const [errorMessage, setErrorMessage] = useState(null)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -95,11 +99,7 @@ const App = () => {
         value={newBlog}
         onChange={handleBlogChange}
       />
-      <button type="submit">save</button>
-      <h2>blogs</h2>
-      {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
-      )}
+      <button type="submit">save</button>    
     </form>
     
   )
@@ -113,6 +113,12 @@ const App = () => {
     {user && <div>
        <p>{user.name} logged in</p>
          {blogForm()}
+         <div>
+          <h2>blogs</h2>
+          {blogs.map(blog =>
+            <Blog key={blog.id} blog={blog} />
+          )}
+         </div>
       </div>
     }
 
