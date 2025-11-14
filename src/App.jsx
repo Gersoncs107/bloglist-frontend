@@ -53,22 +53,19 @@ const App = () => {
 }
 
   const handleLogin = async (event) => {
-    event.preventDefault()
-    
-    try {
-      const user = await loginService.login({
-        username, password,
-      })
-      setUser(user)
-      setUsername('')
-      setPassword('')
-    } catch (exception) {
-      setErrorMessage('wrong credentials')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
-    }
+  event.preventDefault()
+  
+  try {
+    const user = await loginService.login({ username, password })
+    blogService.setToken(user.token)  // ← ESSENCIAL
+    setUser(user)
+    setUsername('')
+    setPassword('')
+  } catch (exception) {
+    setErrorMessage('Wrong credentials')
+    setTimeout(() => setErrorMessage(null), 5000)
   }
+}
 
   const handleBlogChange = (event) => {
     setNewBlog(event.target.value)
