@@ -140,7 +140,7 @@ const App = () => {
       <Notification message={errorMessage} />
 
       {!user && loginForm()} 
-    {user && <div>
+      {user && <div>
        <p>{user.name} logged in</p>
          {blogForm()}
          <div>
