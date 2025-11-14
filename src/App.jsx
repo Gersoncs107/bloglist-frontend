@@ -23,28 +23,34 @@ const App = () => {
   }, [])
 
   const addBlog = async (event) => {
-        event.preventDefault()
+  event.preventDefault()
 
-        if (!newBlog || newBlog.trim() === '') {
-          setErrorMessage('Blog content cannot be empty')
-          setTimeout(() => setErrorMessage(null), 3000)
-          return
-        }
+  if (!title.trim() || !author.trim() || !url.trim()) {
+    setErrorMessage('Title, author, and URL are required')
+    setTimeout(() => setErrorMessage(null), 3000)
+    return
+  }
 
-        const blogObject = {
-         title: newBlog
-        }
+  const blogObject = {
+    title,
+    author,
+    url,
+    likes: likes || 0
+  }
 
-        try {
-          const returnedBlog = await blogService.create(blogObject)
-          setBlogs(blogs.concat(returnedBlog))
-          setNewBlog('')
-        } catch (error) {
-          console.error('Failed to create blog:', error)
-          setErrorMessage('Failed to save blog (check server).')
-          setTimeout(() => setErrorMessage(null), 5000)
-        }
-    }
+  try {
+    const returnedBlog = await blogService.create(blogObject)
+    setBlogs(blogs.concat(returnedBlog))
+    setTitle('')
+    setAuthor('')
+    setUrl('')
+    setLikes(0)
+  } catch (error) {
+    console.error('Failed to create blog:', error)
+    setErrorMessage('Failed to save blog. Check server or authentication.')
+    setTimeout(() => setErrorMessage(null), 5000)
+  }
+}
 
   const handleLogin = async (event) => {
     event.preventDefault()
