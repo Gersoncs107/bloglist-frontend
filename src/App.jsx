@@ -64,10 +64,6 @@ const App = () => {
   }
 }
 
-  const handleBlogChange = (event) => {
-    setNewBlog(event.target.value)
-  }
-
   const loginForm = () => (
     <form onSubmit={handleLogin}>
       <div>
