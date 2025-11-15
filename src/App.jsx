@@ -142,6 +142,11 @@ const App = () => {
   </div>
 )
 
+const logOut = () => {
+  window.localStorage.removeItem('loggedBlogAppUser')
+  setUser(null)
+}
+
   return (
     <div>
       <h1>Blogs</h1>
@@ -149,7 +154,7 @@ const App = () => {
 
       {!user && loginForm()} 
       {user && <div>
-       <p>{user.name} logged in</p>
+       <p>{user.name} logged in</p><button onClick={logOut}>Logout</button>
          {blogForm()}
          <div>
           <h2>blogs</h2>
