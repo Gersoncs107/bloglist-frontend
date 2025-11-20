@@ -38,7 +38,7 @@ const blogForm = ({
           <input
             type="url"
             value={url}
-            onChange={({ target }) => setUrl(target.value)}
+            onChange={handleUrlChange}
             placeholder="https://example.com"
           />
         </label>
