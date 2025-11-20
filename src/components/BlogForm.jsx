@@ -9,14 +9,14 @@ const blogForm = ({
     return (
         <div>
     <h2>Create new blog</h2>
-    <form onSubmit={addBlog}>
+    <form onSubmit={handleSubmit}>
       <div>
         <label>
           Title:
           <input
             type="text"
             value={title}
-            onChange={({ target }) => setTitle(target.value)}
+            onChange={handleTitleChange}
             placeholder="Enter blog title"
           />
         </label>
@@ -27,7 +27,7 @@ const blogForm = ({
           <input
             type="text"
             value={author}
-            onChange={({ target }) => setAuthor(target.value)}
+            onChange={handleAuthorChange}
             placeholder="Enter author name"
           />
         </label>
