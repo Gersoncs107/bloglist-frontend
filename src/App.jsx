@@ -112,6 +112,18 @@ const App = () => {
         <div style={hideWhenVisible}>
           <button onClick={() => setFormVisible(true)}>New Blog</button>
         </div>
+        <div style={showWhenVisible}>
+        <BlogForm
+          handleSubmit={addBlog}
+          handleTitleChange={({ target }) => setTitle(target.value)}
+          handleAuthorChange={({ target }) => setAuthor(target.value)}
+          handleUrlChange={({ target }) => setUrl(target.value)}
+          Title={title}
+          Author={author}
+          Url={url}
+        />
+        <button onClick={() => setFormVisible(false)}>Cancel</button>
+        </div> 
       </div>
     )
   }

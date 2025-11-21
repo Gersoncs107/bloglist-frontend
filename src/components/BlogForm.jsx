@@ -1,4 +1,4 @@
-const blogForm = ({
+const BlogForm = ({
     handleSubmit, 
     handleTitleChange, 
     handleAuthorChange, 
@@ -49,3 +49,4 @@ const blogForm = ({
     )
   
 }
+export default BlogForm
