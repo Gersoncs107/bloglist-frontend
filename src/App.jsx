@@ -4,6 +4,7 @@ import './App.css'
 import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login'
+import BlogForm from './components/BlogForm'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -110,7 +111,7 @@ const App = () => {
     return (
       <div>
         <div style={hideWhenVisible}>
-          <button onClick={() => setFormVisible(true)}>New Blog</button>
+          <button onClick={() => setFormVisible(true)}>Create</button>
         </div>
         <div style={showWhenVisible}>
         <BlogForm

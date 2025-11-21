@@ -3,9 +3,9 @@ const BlogForm = ({
     handleTitleChange, 
     handleAuthorChange, 
     handleUrlChange, 
-    Title, 
-    Author, 
-    Url}) => {
+    title, 
+    author, 
+    url}) => {
     return (
         <div>
     <h2>Create new blog</h2>
