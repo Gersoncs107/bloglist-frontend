@@ -106,9 +106,7 @@ const App = () => {
   )
 
   const blogForm = () => {
-    const hideWhenVisible = { display: formVisible ? 'none' : '' }
-    const showWhenVisible = { display: formVisible ? '' : 'none' }
-
+    
     return (
       <Togglable buttonLabel="Create New Blog">
         <BlogForm 
