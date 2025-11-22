@@ -111,7 +111,7 @@ const App = () => {
     return (
       <div>
         <div style={hideWhenVisible}>
-          <button onClick={() => setFormVisible(true)}>Create</button>
+          <button onClick={() => setFormVisible(true)}>Create New Blog</button>
         </div>
         <div style={showWhenVisible}>
         <BlogForm
