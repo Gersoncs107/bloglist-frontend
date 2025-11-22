@@ -183,7 +183,7 @@ const logOut = () => {
 
       {!user && loginForm()} 
       {user && <div>
-       <p>{user.name} logged in</p><button onClick={logOut}>Logout</button>
+       <p>{user.name} logged in <button onClick={logOut}>Logout</button></p>
          {blogForm()}
          <div>
           <h2>blogs</h2>
