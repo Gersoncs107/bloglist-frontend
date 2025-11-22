@@ -124,48 +124,6 @@ const App = () => {
     )
   }
 
-//   const blogForm = () => (
-//   <div>
-//     <h2>Create new blog</h2>
-//     <form onSubmit={addBlog}>
-//       <div>
-//         <label>
-//           Title:
-//           <input
-//             type="text"
-//             value={title}
-//             onChange={({ target }) => setTitle(target.value)}
-//             placeholder="Enter blog title"
-//           />
-//         </label>
-//       </div>
-//       <div>
-//         <label>
-//           Author:
-//           <input
-//             type="text"
-//             value={author}
-//             onChange={({ target }) => setAuthor(target.value)}
-//             placeholder="Enter author name"
-//           />
-//         </label>
-//       </div>
-//       <div>
-//         <label>
-//           URL:
-//           <input
-//             type="url"
-//             value={url}
-//             onChange={({ target }) => setUrl(target.value)}
-//             placeholder="https://example.com"
-//           />
-//         </label>
-//       </div>
-//       <button type="submit">Create</button>
-//     </form>
-//   </div>
-// )
-
 const logOut = () => {
   window.localStorage.removeItem('loggedBlogAppUser')
   setUser(null)
@@ -188,34 +146,6 @@ const logOut = () => {
          </div>
       </div>
     }
-
-      {/* <h2>Log in to application</h2> */}
-      {/* <form onSubmit={handleLogin}>
-        <div>
-          username
-            <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          password
-            <input
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type="submit">login</button>
-      </form> */}
-
-      {/* <h2>blogs</h2>
-      {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
-      )} */}
     </div>
   )
 }
