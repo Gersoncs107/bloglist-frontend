@@ -5,6 +5,7 @@ import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import BlogForm from './components/BlogForm'
+import Togglable from './components/Togglable'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -109,23 +110,17 @@ const App = () => {
     const showWhenVisible = { display: formVisible ? '' : 'none' }
 
     return (
-      <div>
-        <div style={hideWhenVisible}>
-          <button onClick={() => setFormVisible(true)}>Create New Blog</button>
-        </div>
-        <div style={showWhenVisible}>
-        <BlogForm
-          handleSubmit={addBlog}
-          handleTitleChange={({ target }) => setTitle(target.value)}
-          handleAuthorChange={({ target }) => setAuthor(target.value)}
-          handleUrlChange={({ target }) => setUrl(target.value)}
-          Title={title}
-          Author={author}
-          Url={url}
+      <Togglable buttonLabel="Create New Blog">
+        <BlogForm 
+            handleSubmit={addBlog}
+            handleTitleChange={({ target }) => setTitle(target.value)}
+            handleAuthorChange={({ target }) => setAuthor(target.value)}
+            handleUrlChange={({ target }) => setUrl(target.value)}
+            title={title}
+            author={author}
+            url={url}
         />
-        <button onClick={() => setFormVisible(false)}>Cancel</button>
-        </div> 
-      </div>
+      </Togglable>
     )
   }
 

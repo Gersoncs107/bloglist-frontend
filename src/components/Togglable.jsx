@@ -3,8 +3,8 @@ import { useState } from "react";
 const Togglable = (props) => {
     const [visible, setVisible] = useState(false)
 
-    const hideWhenVisible = { display: formVisible ? 'none' : '' }
-    const showWhenVisible = { display: formVisible ? '' : 'none' }
+    const hideWhenVisible = { display: visible ? 'none' : '' }
+    const showWhenVisible = { display: visible ? '' : 'none' }
 
     const toggleVisibility = () => {
         setVisible(!visible)
@@ -22,6 +22,8 @@ const Togglable = (props) => {
         </div>
     )
 }
+
+export default Togglable
 
 {/* <Togglable buttonLabel="Create New Blog">
     <LoginForm 

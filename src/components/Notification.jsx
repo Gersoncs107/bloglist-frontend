@@ -10,3 +10,4 @@ const Notification = ({message}) => {
 }
 
 export default Notification
+
