@@ -1,4 +1,10 @@
-<Toggleble buttonLabel="Create New Blog">
+import { useState } from "react";
+
+const Togglable = (props) => {
+    const [visible, setVisible] = useState(false)
+}
+
+{/* <Togglable buttonLabel="Create New Blog">
     <LoginForm 
         handleSubmit={addBlog}
         handleTitleChange={({ target }) => setTitle(target.value)}
@@ -8,4 +14,4 @@
         Author={author}
         Url={url}
     />
-</Toggleble>
+</Togglable> */}
