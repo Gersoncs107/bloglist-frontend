@@ -1,4 +1,4 @@
-const Blog = ({ blog }) => {
+const Blog = ({ blog, details }) => {
    const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -8,9 +8,11 @@ const Blog = ({ blog }) => {
   }
 
 return (
-  
-  <div className="blog" style={blogStyle}>
-    <strong>{blog.title}</strong> by {blog.author}
+  <div  style={blogStyle}>
+    <div className="blog">
+    <strong>{blog.title}</strong> by {blog.author} <button onClick={details}>View</button>
   </div>
+  </div>
+  
 )}
 export default Blog
