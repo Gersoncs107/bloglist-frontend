@@ -11,7 +11,7 @@ return (
   <div  style={blogStyle}>
     <div className="blog">
     <strong>{blog.title}</strong> by {blog.author} <button onClick={details}>View</button>
-  </div>
+    </div>
   </div>
   
 )}
