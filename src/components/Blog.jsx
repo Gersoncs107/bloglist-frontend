@@ -16,18 +16,24 @@ const Blog = ({ blog, updateBlog }) => {
     setVisible(!visible)
   }
 
-  const handleLike = async () => {
-    const updatedBlog = {
-      user: blog.user.id || blog.user._id,  // ID do usuário
-      likes: likes + 1,
-      author: blog.author,
-      title: blog.title,
-      url: blog.url
-    }
+const handleLike = async () => {
+  const userId =
+    blog.user && typeof blog.user === 'object'
+      ? blog.user.id || blog.user._id
+      : blog.user; // se for apenas um ID string
 
-    const response = await updateBlog(blog.id, updatedBlog)
-    setLikes(response.likes)
+  const updatedBlog = {
+    user: userId,
+    likes: likes + 1,
+    author: blog.author,
+    title: blog.title,
+    url: blog.url
   }
+
+  const response = await updateBlog(blog.id, updatedBlog)
+  setLikes(response.likes)
+}
+
 
   return (
     <div style={blogStyle} className="blog">
