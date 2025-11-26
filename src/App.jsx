@@ -149,7 +149,7 @@ const logOut = () => {
           <h2>blogs</h2>
           {blogs.map(blog =>
             <Blog key={blog.id} blog={blog} updateBlog={updateBlog}/>
-          )}
+          ).sort((a, b) => b.props.blog.likes - a.props.blog.likes)}
          </div>
       </div>
     }
