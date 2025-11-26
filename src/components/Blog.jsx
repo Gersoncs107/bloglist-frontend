@@ -34,13 +34,11 @@ const handleLike = async () => {
   setLikes(response.likes)
 }
 
-const handleRemove = () => {
+const handleRemove = async () => {
   if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
-    // Implement blog removal logic here
-    console.log(`Blog ${blog.title} removed`)
+    await deleteBlog(blog.id)
   }
 }
-
 
   return (
     <div style={blogStyle} className="blog">
