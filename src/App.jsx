@@ -71,6 +71,10 @@ const App = () => {
   return updated
 }
 
+  const removeBlog = async (id) => {
+  await blogService.remove(id)
+  setBlogs(blogs.filter(b => b.id !== id))
+}
 
   const handleLogin = async (event) => {
   event.preventDefault()
@@ -148,7 +152,7 @@ const logOut = () => {
          <div>
           <h2>blogs</h2>
           {blogs.map(blog =>
-            <Blog key={blog.id} blog={blog} updateBlog={updateBlog}/>
+            <Blog key={blog.id} blog={blog} updateBlog={updateBlog} removeBlog={removeBlog}/>
           ).sort((a, b) => b.props.blog.likes - a.props.blog.likes)}
          </div>
       </div>
