@@ -34,6 +34,13 @@ const handleLike = async () => {
   setLikes(response.likes)
 }
 
+const handleRemove = () => {
+  if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
+    // Implement blog removal logic here
+    console.log(`Blog ${blog.title} removed`)
+  }
+}
+
 
   return (
     <div style={blogStyle} className="blog">
@@ -52,6 +59,9 @@ const handleLike = async () => {
             <button onClick={handleLike}>like</button>
           </div>
           <div>{blog.user?.name}</div>
+          <div>
+            <button onClick={handleRemove}>Remove</button>
+          </div>
         </div>
       )}
     </div>
