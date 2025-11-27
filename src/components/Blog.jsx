@@ -29,12 +29,18 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
     title: blog.title,
     url: blog.url
   }
+  
+  const canRemove =
+  blog.user &&
+  user &&
+  blog.user.username === user.username
+
 
   const response = await updateBlog(blog.id, updatedBlog)
   setLikes(response.likes)
 }
 
-const handleRemove = async () => {
+  const handleRemove = async () => {
   if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
     await deleteBlog(blog.id)
   }
