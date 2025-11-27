@@ -4,13 +4,13 @@ const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
   const [visible, setVisible] = useState(false)
   const [likes, setLikes] = useState(blog.likes)
 
-  const blogStyle = {
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5
-  }
+  // const blogStyle = {
+  //   paddingTop: 10,
+  //   paddingLeft: 2,
+  //   border: 'solid',
+  //   borderWidth: 1,
+  //   marginBottom: 5
+  // }
 
   const toggleVisibility = () => {
     setVisible(!visible)
@@ -47,7 +47,7 @@ const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
 }
 
   return (
-    <div style={blogStyle} className="blog">
+    <div className="blog">
       <div>
         <strong>{blog.title}</strong> — {blog.author}
         <button onClick={toggleVisibility}>
