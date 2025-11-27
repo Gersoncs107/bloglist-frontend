@@ -16,7 +16,7 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
     setVisible(!visible)
   }
 
-const handleLike = async () => {
+  const handleLike = async () => {
   const userId =
     blog.user && typeof blog.user === 'object'
       ? blog.user.id || blog.user._id
