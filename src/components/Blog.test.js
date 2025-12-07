@@ -20,4 +20,9 @@ describe("<Blog />", () => {
         }
     }
 
+    const currentUser = {
+        username: "testuser",
+        name: "Test User"
+    }
+
 })
