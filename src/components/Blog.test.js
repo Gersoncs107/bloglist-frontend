@@ -42,7 +42,7 @@ describe("<Blog />", () => {
 
         const urlDiv = screen.queryByText("http://testblog.com")
         expect(urlDiv).not.toBeInTheDocument()
-        
+
         const likesDiv = screen.queryByText("likes 5")
         expect(likesDiv).not.toBeInTheDocument()
     })
