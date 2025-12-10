@@ -1,3 +1,4 @@
+// src/components/Blog.test.js
 import '@testing-library/jest-dom'
 import { render, screen } from "@testing-library/react";
 import Blog from "./Blog";
@@ -36,14 +37,14 @@ describe("<Blog />", () => {
   });
 
   test("renders blog title and author, but not url or likes by default", () => {
-    // Verifica título e autor separadamente (mais robusto)
-    const titleElement = screen.getByText("Test Blog Title");
+    // Use { exact: false } to match substrings (robust for composed text)
+    const titleElement = screen.getByText(blog.title, { exact: false });
     expect(titleElement).toBeVisible();
 
-    const authorElement = screen.getByText("Test Author");
+    const authorElement = screen.getByText(blog.author, { exact: false });
     expect(authorElement).toBeVisible();
 
-    const urlDiv = screen.queryByText("http://testblog.com");
+    const urlDiv = screen.queryByText(blog.url);
     expect(urlDiv).toBeNull();
 
     const likesDiv = screen.queryByText(/likes 5/);
