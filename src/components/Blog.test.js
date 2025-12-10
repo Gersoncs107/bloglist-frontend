@@ -11,7 +11,7 @@ describe("<Blog />", () => {
 
     const blog = {
         tittle: "Test Blog Title",
-        authir: "Test Author",
+        author: "Test Author",
         url: "http://testblog.com",
         likes: 5,
         user: {
