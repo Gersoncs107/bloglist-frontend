@@ -10,7 +10,7 @@ describe("<Blog />", () => {
     let container
 
     const blog = {
-        tittle: "Test Blog Title",
+        title: "Test Blog Title",
         author: "Test Author",
         url: "http://testblog.com",
         likes: 5,
