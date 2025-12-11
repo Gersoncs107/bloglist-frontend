@@ -51,13 +51,12 @@ describe("<Blog />", () => {
     expect(likesDiv).toBeNull();
   });
 
-  test("shows url and likes when the view button is clicked", async () => {
+  test('url and likes are shown when view button is clicked', async () => {
     const user = userEvent.setup();
-    const button = screen.getByText("view");
-    await user.click(button);
-    const urlDiv = screen.getByText(blog.url);
-    expect(urlDiv).toBeVisible();
-    const likesDiv = screen.getByText(/likes 5/);
-    expect(likesDiv).toBeVisible();
-  });
+    const viewButton = screen.getByText('view');
+    await user.click(viewButton);
+
+    expect(screen.getByText(blog.url, { exact: false })).toBeVisible();
+    expect(screen.getByText(/likes 5/, { exact: false })).toBeVisible();
+  })
 });
