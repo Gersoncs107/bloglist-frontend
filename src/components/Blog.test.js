@@ -50,4 +50,14 @@ describe("<Blog />", () => {
     const likesDiv = screen.queryByText(/likes 5/);
     expect(likesDiv).toBeNull();
   });
+
+  test("shows url and likes when the view button is clicked", async () => {
+    const user = userEvent.setup();
+    const button = screen.getByText("view");
+    await user.click(button);
+    const urlDiv = screen.getByText(blog.url);
+    expect(urlDiv).toBeVisible();
+    const likesDiv = screen.getByText(/likes 5/);
+    expect(likesDiv).toBeVisible();
+  });
 });
