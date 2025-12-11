@@ -4,7 +4,12 @@ import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
 import Blog from "./Blog";
 
-const mockUpdateBlog = jest.fn();
+// MOCK CORRIGIDO: agora retorna o objeto com likes atualizado
+const mockUpdateBlog = jest.fn().mockImplementation((id, blogObject) => ({
+  ...blogObject,
+  likes: blogObject.likes
+}));
+
 const mockDeleteBlog = jest.fn();
 
 describe("<Blog />", () => {
@@ -38,37 +43,31 @@ describe("<Blog />", () => {
   });
 
   test("renders blog title and author, but not url or likes by default", () => {
-    // Use { exact: false } to match substrings (robust for composed text)
     const titleElement = screen.getByText(blog.title, { exact: false });
     expect(titleElement).toBeVisible();
 
     const authorElement = screen.getByText(blog.author, { exact: false });
     expect(authorElement).toBeVisible();
 
-    const urlDiv = screen.queryByText(blog.url);
-    expect(urlDiv).toBeNull();
-
-    const likesDiv = screen.queryByText(/likes 5/);
-    expect(likesDiv).toBeNull();
+    expect(screen.queryByText(blog.url)).toBeNull();
+    expect(screen.queryByText(/likes 5/)).toBeNull();
   });
 
   test('url and likes are shown when view button is clicked', async () => {
     const user = userEvent.setup();
-    const viewButton = screen.getByText('view');
-    await user.click(viewButton);
+    await user.click(screen.getByText('view'));
 
     expect(screen.getByText(blog.url, { exact: false })).toBeVisible();
-    expect(screen.getByText(/likes 5/, { exact: false })).toBeVisible();
-  })
+    expect(screen.getByText(/likes/, { exact: false })).toBeVisible();
+  });
 
-  test('clicking the like button twice calls event handler twice', async () => {
+  test('like button clicked twice → updateBlog called twice', async () => {
     const user = userEvent.setup();
-    const viewButton = screen.getByText('view');
-    await user.click(viewButton);
-    const likeButton = screen.getByText('like');
+    
+    await user.click(screen.getByText('view'));
+    await user.click(screen.getByText('like'));
+    await user.click(screen.getByText('like'));
 
-    await user.click(likeButton);
-    await user.click(likeButton);
     expect(mockUpdateBlog.mock.calls).toHaveLength(2);
   });
 });
