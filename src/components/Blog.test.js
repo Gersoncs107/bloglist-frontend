@@ -60,4 +60,15 @@ describe("<Blog />", () => {
     expect(screen.getByText(blog.url, { exact: false })).toBeVisible();
     expect(screen.getByText(/likes 5/, { exact: false })).toBeVisible();
   })
+
+  test('clicking the like button twice calls event handler twice', async () => {
+    const user = userEvent.setup();
+    const viewButton = screen.getByText('view');
+    await user.click(viewButton);
+    const likeButton = screen.getByText('like');
+
+    await user.click(likeButton);
+    await user.click(likeButton);
+    expect(mockUpdateBlog.mock.calls).toHaveLength(2);
+  });
 });
