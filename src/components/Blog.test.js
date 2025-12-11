@@ -1,10 +1,8 @@
-// src/components/Blog.test.js
 import '@testing-library/jest-dom'
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
 import Blog from "./Blog";
 
-// MOCK CORRIGIDO: agora retorna o objeto com likes atualizado
 const mockUpdateBlog = jest.fn().mockImplementation((id, blogObject) => ({
   ...blogObject,
   likes: blogObject.likes
