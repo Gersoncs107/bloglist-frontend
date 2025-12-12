@@ -10,7 +10,11 @@ const BlogForm = ({
   return (
     <div>
       <h2>Create new blog</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => {
+  e.preventDefault()
+  handleSubmit(e)
+}}>
+
         <div>
           <label>
             Title:
