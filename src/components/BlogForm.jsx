@@ -1,4 +1,3 @@
-// src/components/BlogForm.jsx
 const BlogForm = ({
   handleSubmit,
   handleTitleChange,
