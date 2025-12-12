@@ -4,8 +4,44 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import BlogForm from './BlogForm'
 
+const mockUpdateBlog = jest.fn().mockImplementation((id, blogObject) => ({
+  ...blogObject,
+  likes: blogObject.likes
+}));
+
+const mockDeleteBlog = jest.fn();
+
 describe('<BlogForm />', () => {
-    
+
+   let container;
+
+  const blog = {
+    title: "Test Blog Title",  
+    author: "Test Author",      
+    url: "http://testblog.com",
+    likes: 5,
+    user: {
+      username: "testuser",
+      name: "Test User"
+    }
+  };
+
+  const currentUser = {
+    username: "testuser",
+    name: "Test User"
+  };
+
+   beforeEach(() => {
+    container = render(
+      <Blog
+        blog={blog}
+        updateBlog={mockUpdateBlog}
+        deleteBlog={mockDeleteBlog}
+        user={currentUser}
+      />
+    ).container;
+  })
+
   test('calls handleSubmit with correct details when a new blog is created', async () => {
     const createBlogHandler = jest.fn()
     const user = userEvent.setup()
