@@ -1,48 +1,63 @@
-// src/components/BlogForm.test.js
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import BlogForm from './BlogForm'
+import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
+import BlogForm from "./BlogForm";
+import Blog from "./Blog";
 
-describe('<BlogForm />', () => {
-  test('calls handleSubmit with correct details when a new blog is created', async () => {
-    const createBlogHandler = jest.fn()
-    const user = userEvent.setup()
+const mockUpdateBlog = jest.fn().mockImplementation((id, blogObject) => ({
+  ...blogObject,
+  likes: blogObject.likes
+}));
 
-    // Simula os estados e handlers (como no App.jsx)
-    const mockTitle = ''
-    const mockAuthor = ''
-    const mockUrl = ''
-    const mockSetTitle = jest.fn((value) => mockTitle = value)  // Simula atualização de estado
-    const mockSetAuthor = jest.fn((value) => mockAuthor = value)
-    const mockSetUrl = jest.fn((value) => mockUrl = value)
+const mockDeleteBlog = jest.fn();
 
-    render(
-      <BlogForm
-        handleSubmit={createBlogHandler}
-        handleTitleChange={mockSetTitle}
-        handleAuthorChange={mockSetAuthor}
-        handleUrlChange={mockSetUrl}
-        title={mockTitle}
-        author={mockAuthor}
-        url={mockUrl}
+describe("<Blog />", () => {
+  let container;
+
+  const blog = {
+    title: "Test Blog Title",  
+    author: "Test Author",      
+    url: "http://testblog.com",
+    likes: 5,
+    user: {
+      username: "testuser",
+      name: "Test User"
+    }
+  };
+
+  const currentUser = {
+    username: "testuser",
+    name: "Test User"
+  };
+
+  beforeEach(() => {
+    container = render(
+      <Blog
+        blog={blog}
+        updateBlog={mockUpdateBlog}
+        deleteBlog={mockDeleteBlog}
+        user={currentUser}
       />
-    )
+    ).container;
+  });
 
-    // Preenche os campos (agora os onChange atualizam os mocks)
-    await user.type(screen.getByPlaceholderText('Enter blog title'), 'Testing com Jest')
-    await user.type(screen.getByPlaceholderText('Enter author name'), 'Maria Dev')
-    await user.type(screen.getByPlaceholderText('https://example.com'), 'https://mariajest.dev')
+  test("renders blog title and author, but not url or likes by default", () => {
+    const titleElement = screen.getByText(blog.title, { exact: false });
+    expect(titleElement).toBeVisible();
 
-    // Envia o formulário
-    await user.click(screen.getByText('Create'))
+    const authorElement = screen.getByText(blog.author, { exact: false });
+    expect(authorElement).toBeVisible();
 
-    // Verificações
-    expect(createBlogHandler).toHaveBeenCalledTimes(1)
-    expect(createBlogHandler).toHaveBeenCalledWith({
-      title: 'Testing com Jest',
-      author: 'Maria Dev',
-      url: 'https://mariajest.dev'
-    })
-  })
-})
+    expect(screen.queryByText(blog.url)).toBeNull();
+    expect(screen.queryByText(/likes 5/)).toBeNull();
+  });
+
+  test('url and likes are shown when view button is clicked', async () => {
+    const user = userEvent.setup();
+    await user.click(screen.getByText('view'));
+
+    expect(screen.getByText(blog.url, { exact: false })).toBeVisible();
+    expect(screen.getByText(/likes/, { exact: false })).toBeVisible();
+  });
+
+});
