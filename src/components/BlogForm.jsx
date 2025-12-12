@@ -1,16 +1,22 @@
+// src/components/BlogForm.jsx
 const BlogForm = ({
-  handleSubmit,
-  handleTitleChange,
-  handleAuthorChange,
-  handleUrlChange,
-  title,
-  author,
+  handleSubmit, 
+  handleTitleChange, 
+  handleAuthorChange, 
+  handleUrlChange, 
+  title, 
+  author, 
   url
 }) => {
+  const onSubmit = (event) => {
+    event.preventDefault();  // Previne o reload da página
+    handleSubmit({ title, author, url });  // Chama com os dados!
+  };
+
   return (
     <div>
       <h2>Create new blog</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <div>
           <label>
             Title:
@@ -47,7 +53,7 @@ const BlogForm = ({
         <button type="submit">Create</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default BlogForm
+export default BlogForm;

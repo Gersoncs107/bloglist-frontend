@@ -34,13 +34,11 @@ const App = () => {
     }
   }, [])
 
-  const addBlog = async (event) => {
-  event.preventDefault()
-
-  if (!title.trim() || !author.trim() || !url.trim()) {
-    setErrorMessage('Title, author, and URL are required')
-    setTimeout(() => setErrorMessage(null), 3000)
-    return
+  const addBlog = async (blogObject) => {
+  if (!blogObject.title.trim() || !blogObject.author.trim() || !blogObject.url.trim()) {
+    setErrorMessage('Title, author, and URL are required');
+    setTimeout(() => setErrorMessage(null), 3000);
+    return;
   }
 
   const blogObject = {
