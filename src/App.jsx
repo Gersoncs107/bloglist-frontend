@@ -34,8 +34,7 @@ const App = () => {
     }
   }, [])
 
-  const addBlog = async (event) => {
-
+  const addBlog = async ({ title, author, url }) => {
   if (!title.trim() || !author.trim() || !url.trim()) {
     setErrorMessage('Title, author, and URL are required')
     setTimeout(() => setErrorMessage(null), 3000)
@@ -47,6 +46,8 @@ const App = () => {
     author,
     url
   }
+
+
 
   try {
     const returnedBlog = await blogService.create(blogObject)
