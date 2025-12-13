@@ -1,19 +1,16 @@
-const BlogForm = ({
-  handleSubmit,
-  handleTitleChange,
-  handleAuthorChange,
-  handleUrlChange,
-  title,
-  author,
-  url
-}) => {
+const BlogForm = ({ handleSubmit, title, author, url, handleTitleChange, handleAuthorChange, handleUrlChange }) => {
+  const onSubmit = (e) => {
+    e.preventDefault()
+    handleSubmit({
+      title,
+      author,
+      url
+    })
+  }
   return (
     <div>
       <h2>Create new blog</h2>
-      <form onSubmit={(e) => {
-  e.preventDefault()
-  handleSubmit(e)
-}}>
+      <form onSubmit={onSubmit}>
 
         <div>
           <label>
