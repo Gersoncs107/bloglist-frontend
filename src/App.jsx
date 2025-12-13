@@ -35,7 +35,6 @@ const App = () => {
   }, [])
 
   const addBlog = async (event) => {
-  event.preventDefault()
 
   if (!title.trim() || !author.trim() || !url.trim()) {
     setErrorMessage('Title, author, and URL are required')
