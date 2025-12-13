@@ -119,15 +119,8 @@ const App = () => {
     
     return (
       <Togglable buttonLabel="Create New Blog" ref= {blogFormRef}>
-        <BlogForm 
-            handleSubmit={addBlog}
-            handleTitleChange={({ target }) => setTitle(target.value)}
-            handleAuthorChange={({ target }) => setAuthor(target.value)}
-            handleUrlChange={({ target }) => setUrl(target.value)}
-            title={title}
-            author={author}
-            url={url}
-        />
+      <BlogForm handleSubmit={addBlog} />
+
       </Togglable>
     )
   }
