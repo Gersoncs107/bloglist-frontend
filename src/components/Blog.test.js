@@ -11,6 +11,8 @@ const mockUpdateBlog = jest.fn().mockImplementation((id, blogObject) => ({
 
 const mockDeleteBlog = jest.fn();
 
+const user = userEvent.setup({ delay: 0 })
+
 describe("<Blog />", () => {
   let container;
 
