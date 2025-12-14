@@ -52,9 +52,6 @@ const App = () => {
     setBlogs(blogs.concat(returnedBlog))
     setErrorMessage(`A new blog "${returnedBlog.title}" by ${returnedBlog.author} added`)
     setTimeout(() => setErrorMessage(null), 5000)
-    setTitle('')
-    setAuthor('')
-    setUrl('')
   } catch (error) {
     console.error('Failed to create blog:', error)
     setErrorMessage('Failed to save blog. Check server or authentication.')
