@@ -6,7 +6,7 @@ import BlogForm from './BlogForm'
 describe('<BlogForm />', () => {
   test('calls handleSubmit with correct details when a new blog is created', async () => {
     const createBlogHandler = jest.fn()
-    const user = userEvent.setup()
+    const user = userEvent.setup({ delay: 0 })
 
     render(<BlogForm handleSubmit={createBlogHandler} />)
 
