@@ -93,7 +93,7 @@ const App = () => {
       <div>
         username
           <input
-          id='usernam'
+          id='username'
           type="text"
           value={username}
           name="Username"
@@ -103,6 +103,7 @@ const App = () => {
       <div>
         password
           <input
+          id='password'
           type="password"
           value={password}
           name="Password"
