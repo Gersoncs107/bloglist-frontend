@@ -57,6 +57,11 @@ describe('Blog app', () => {
       cy.contains('A blog created by cypress — Cypress Author')
       .find('#view-button')
       .click()
+      
+      cy.contains('A blog created by cypress — Cypress Author')
+      .parent()
+      .find('#like-button')
+      .click()
     })
   })
 })
