@@ -54,7 +54,7 @@ describe('Blog app', () => {
       cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
       cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
       cy.get('form').contains('Create').click()
-      cy.contains('A blog created by cypress Cypress Author').find('.like-button').click()
+      cy.contains('A blog created by cypress Cypress Author').find('#like-button').click()
       cy.contains('Likes: 1')
     })
   })
