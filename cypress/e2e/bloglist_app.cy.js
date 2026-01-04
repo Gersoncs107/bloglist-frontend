@@ -47,5 +47,15 @@ describe('Blog app', () => {
       cy.get('form').contains('Create').click()
       cy.get('.blog').should('contain', 'A blog created by cypress').and('contain', 'Cypress Author')
     })
+
+    it('A blog can be liked', () => {
+      cy.contains('Create New Blog').click()
+      cy.get('input[placeholder="Enter blog title"]').type('A blog created by cypress')
+      cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
+      cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
+      cy.get('form').contains('Create').click()
+      cy.contains('A blog created by cypress Cypress Author').find('.like-button').click()
+      cy.contains('Likes: 1')
+    })
   })
 })
