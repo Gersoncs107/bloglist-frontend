@@ -68,7 +68,7 @@ describe('Blog app', () => {
       .should('contain', 'likes 1')
     })
 
-    it.only('A blog can be deleted by the user who created it', () => {
+    it('A blog can be deleted by the user who created it', () => {
       cy.contains('Create New Blog').click()
       cy.get('input[placeholder="Enter blog title"]').type('A blog created by cypress')
       cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
