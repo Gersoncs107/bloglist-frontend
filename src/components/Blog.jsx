@@ -65,7 +65,7 @@ const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
           <div>{blog.user?.name}</div>
 
           {canRemove && (
-            <button onClick={handleRemove}>Remove</button>
+            <button id='remove-button' onClick={handleRemove}>Remove</button>
           )}
         </div>
       )}
