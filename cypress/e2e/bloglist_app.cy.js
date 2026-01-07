@@ -84,7 +84,7 @@ describe('Blog app', () => {
       cy.get('html').should('not.contain', 'A blog created by cypress — Cypress Author')
     })
     
-    it.only('Remove button is not shown for other users', () => {
+    it('Remove button is not shown for other users', () => {
       cy.contains('Create New Blog').click()
       cy.get('input[placeholder="Enter blog title"]').type('A blog created by cypress')
       cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
