@@ -83,5 +83,30 @@ describe('Blog app', () => {
       .click()
       cy.get('html').should('not.contain', 'A blog created by cypress — Cypress Author')
     })
+    
+    it('Remove button is not shown for other users', () => {
+      cy.contains('Create New Blog').click()
+      cy.get('input[placeholder="Enter blog title"]').type('A blog created by cypress')
+      cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
+      cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
+      cy.get('form').contains('Create').click()
+      cy.contains('Logout').click()
+      const anotherUser = {
+        name: 'Madruga',
+        username: 'madrugasx',
+        password: 'salada'
+      }
+      cy.request('POST', 'http://localhost:3003/api/users/', anotherUser)
+      cy.get('#username').type('madrugasx')
+      cy.get('#password').type('salada')
+      cy.get('#login-button').click()
+      cy.contains('Madruga logged in')
+      cy.contains('A blog created by cypress — Cypress Author')
+        .find('#view-button')
+        .click()
+      cy.contains('A blog created by cypress — Cypress Author')
+        .parent()
+        .should('not.contain', 'Remove Blog')
+    })
   })
 })
