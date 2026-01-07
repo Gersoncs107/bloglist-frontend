@@ -92,15 +92,15 @@ describe('Blog app', () => {
       cy.get('form').contains('Create').click()
       cy.contains('Logout').click()
       const anotherUser = {
-        name: 'Madruga',
-        username: 'madrugasx',
-        password: 'salada'
+        name: 'Another User',
+        username: 'another',
+        password: 'anotherpassword'
       }
       cy.request('POST', 'http://localhost:3003/api/users/', anotherUser)
-      cy.get('#username').type('madrugasx')
-      cy.get('#password').type('salada')
+      cy.get('#username').type('another')
+      cy.get('#password').type('anotherpassword')
       cy.get('#login-button').click()
-      cy.contains('Madruga logged in')
+      cy.contains('Another User logged in')
       cy.contains('A blog created by cypress — Cypress Author')
         .find('#view-button')
         .click()
