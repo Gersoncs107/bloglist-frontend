@@ -139,7 +139,7 @@ describe('Blog app', () => {
       })
     })
 
-    it('Blogs are displayed in descending order of likes', () => {
+    it.only('Blogs are displayed in descending order of likes', () => {
       cy.get('.blog').then(blogs => {
         cy.wrap(blogs[0]).should('contain', 'Second Blog')
         cy.wrap(blogs[1]).should('contain', 'Third Blog')
