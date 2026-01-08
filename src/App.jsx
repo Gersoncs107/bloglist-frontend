@@ -139,11 +139,20 @@ const logOut = () => {
        <p>{user.name} logged in <button onClick={logOut}>Logout</button></p>
          {blogForm()}
          <div>
-          <h2>blogs</h2>
-          {blogs.map(blog =>
-            <Blog key={blog.id} blog={blog}  user={user} updateBlog={updateBlog} deleteBlog={removeBlog}/>
-          ).sort((a, b) => b.props.blog.likes - a.props.blog.likes)}
-         </div>
+            <h2>blogs</h2>
+            {blogs
+              .sort((a, b) => b.likes - a.likes) 
+              .map(blog => 
+                <Blog 
+                  key={blog.id} 
+                  blog={blog} 
+                  user={user} 
+                  updateBlog={updateBlog} 
+                  deleteBlog={removeBlog}
+                />
+              )
+            }
+      </div>
       </div>
     }
     </div>
