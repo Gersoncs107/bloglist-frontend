@@ -112,39 +112,44 @@ describe('Blog app', () => {
 
   describe('Blogs are ordered by likes', () => {
     beforeEach(() => {
-      cy.get('#username').type('root')
-      cy.get('#password').type('salainen')
-      cy.get('#login-button').click()
-      const blogs = [
-        { title: 'First Blog', author: 'Author One', url: 'https://firstblog.com', likes: 2 },
-        { title: 'Second Blog', author: 'Author Two', url: 'https://secondblog.com', likes: 5 },
-        { title: 'Third Blog', author: 'Author Three', url: 'https://thirdblog.com', likes: 3 }
-      ]
-      blogs.forEach(blog => {
-        cy.contains('Create New Blog').click()
-        cy.get('input[placeholder="Enter blog title"]').type(blog.title)
-        cy.get('input[placeholder="Enter author name"]').type(blog.author)
-        cy.get('input[placeholder="https://example.com"]').type(blog.url)
-        cy.get('form').contains('Create').click()
-        cy.contains(`${blog.title} — ${blog.author}`)
-          .find('#view-button')
-          .click()
-        for (let i = 0; i < blog.likes; i++) {
-          cy.contains(`${blog.title} — ${blog.author}`)
-            .parent()
-            .find('#like-button')
-            .click()
-          cy.wait(500) // wait for like to be processed
-        }
-      })
-    })
+  cy.get('#username').type('root')
+  cy.get('#password').type('salainen')
+  cy.get('#login-button').click()
+
+  const blogs = [
+    { title: 'First Blog', author: 'Author One', url: 'https://firstblog.com', likes: 2 },
+    { title: 'Second Blog', author: 'Author Two', url: 'https://secondblog.com', likes: 5 },
+    { title: 'Third Blog', author: 'Author Three', url: 'https://thirdblog.com', likes: 3 }
+  ]
+
+  blogs.forEach(blog => {
+    cy.contains('Create New Blog').click()
+    cy.get('input[placeholder="Enter blog title"]').type(blog.title)
+    cy.get('input[placeholder="Enter author name"]').type(blog.author)
+    cy.get('input[placeholder="https://example.com"]').type(blog.url)
+    cy.get('form').contains('Create').click()
+
+    // Espera o blog aparecer na lista antes de interagir
+    cy.contains('.blog', blog.title).should('contain', blog.author)
+
+    // Agora abre os detalhes
+    cy.contains('.blog', blog.title).find('#view-button').click()
+
+    // Dá os likes
+    for (let i = 0; i < blog.likes; i++) {
+      cy.contains('.blog', blog.title).find('#like-button').click()
+      cy.wait(300) // pequeno delay para evitar race condition no backend
+    }
+
+    // Opcional: fechar novamente para limpar a UI
+    // cy.contains('.blog', blog.title).find('#view-button').click()
+  })
+})
 
     it.only('Blogs are displayed in descending order of likes', () => {
-      cy.get('.blog').then(blogs => {
-        cy.wrap(blogs[0]).should('contain', 'Second Blog')
-        cy.wrap(blogs[1]).should('contain', 'Third Blog')
-        cy.wrap(blogs[2]).should('contain', 'First Blog')
-      })
+    cy.get('.blog').eq(0).should('contain', 'Second Blog')   // 5 likes
+    cy.get('.blog').eq(1).should('contain', 'Third Blog')    // 3 likes
+    cy.get('.blog').eq(2).should('contain', 'First Blog')    // 2 likes
     })
   })
 })
