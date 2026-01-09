@@ -124,9 +124,9 @@ describe('Blog app', () => {
 
   blogs.forEach(blog => {
     cy.contains('Create New Blog').click()
-    cy.get('input[placeholder="Enter blog title"]').type(blog.title)
-    cy.get('input[placeholder="Enter author name"]').type(blog.author)
-    cy.get('input[placeholder="https://example.com"]').type(blog.url)
+    cy.get('#title-input').type(blog.title)
+    cy.get('#author-input').type(blog.author)
+    cy.get('#url-input').type(blog.url)
     cy.get('form').contains('Create').click()
 
     // Espera o blog aparecer na lista antes de interagir
