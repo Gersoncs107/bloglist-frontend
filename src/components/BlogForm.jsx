@@ -20,6 +20,7 @@ const BlogForm = ({ handleSubmit }) => {
         <label>
           Title:
           <input
+            id='title-input'
             type="text"
             value={title}
             onChange={({ target }) => setTitle(target.value)}
@@ -45,6 +46,7 @@ const BlogForm = ({ handleSubmit }) => {
         <label>
           URL:
           <input
+            id='url-input'
             type="url"
             value={url}
             onChange={({ target }) => setUrl(target.value)}
