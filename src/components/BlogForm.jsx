@@ -32,6 +32,7 @@ const BlogForm = ({ handleSubmit }) => {
         <label>
           Author:
           <input
+            id='author-input'
             type="text"
             value={author}
             onChange={({ target }) => setAuthor(target.value)}
