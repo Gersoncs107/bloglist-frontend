@@ -129,24 +129,20 @@ describe('Blog app', () => {
     cy.get('#url-input').type(blog.url)
     cy.get('form').contains('Create').click()
 
-    // Espera o blog aparecer na lista antes de interagir
     cy.contains('.blog', blog.title).should('contain', blog.author)
 
-    // Agora abre os detalhes
     cy.contains('.blog', blog.title).find('#view-button').click()
 
-    // Dá os likes
     for (let i = 0; i < blog.likes; i++) {
       cy.contains('.blog', blog.title).find('#like-button').click()
-      cy.wait(300) // pequeno delay para evitar race condition no backend
+      cy.wait(300) 
     }
 
-    // Opcional: fechar novamente para limpar a UI
-    // cy.contains('.blog', blog.title).find('#view-button').click()
+    cy.contains('.blog', blog.title).find('#view-button').click()
   })
 })
 
-    it.only('Blogs are displayed in descending order of likes', () => {
+    it('Blogs are displayed in descending order of likes', () => {
     cy.get('.blog').eq(0).should('contain', 'Second Blog')   // 5 likes
     cy.get('.blog').eq(1).should('contain', 'Third Blog')    // 3 likes
     cy.get('.blog').eq(2).should('contain', 'First Blog')    // 2 likes
