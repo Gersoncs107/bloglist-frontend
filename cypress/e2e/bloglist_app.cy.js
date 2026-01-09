@@ -112,9 +112,9 @@ describe('Blog app', () => {
 
   describe('Blogs are ordered by likes', () => {
     beforeEach(() => {
-  cy.get('#username').type('root')
-  cy.get('#password').type('salainen')
-  cy.get('#login-button').click()
+    cy.get('#username').type('root')
+    cy.get('#password').type('salainen')
+    cy.get('#login-button').click()
 
   const blogs = [
     { title: 'First Blog', author: 'Author One', url: 'https://firstblog.com', likes: 2 },
