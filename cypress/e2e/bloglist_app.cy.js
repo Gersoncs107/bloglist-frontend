@@ -42,7 +42,7 @@ describe('Blog app', () => {
     it('A blog can be created', () => {
       cy.contains('Create New Blog').click()
       cy.get('#title-input').type('A blog created by cypress')
-      cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
+      cy.get('#author-input').type('Cypress Author')
       cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
       cy.get('form').contains('Create').click()
       cy.get('.blog').should('contain', 'A blog created by cypress').and('contain', 'Cypress Author')
@@ -51,7 +51,7 @@ describe('Blog app', () => {
     it.only('A blog can be liked', () => {
       cy.contains('Create New Blog').click()
       cy.get('#title-input').type('A blog created by cypress')
-      cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
+      cy.get('#author-input').type('Cypress Author')
       cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
       cy.get('form').contains('Create').click()
 
@@ -78,7 +78,7 @@ describe('Blog app', () => {
     it('A blog can be deleted by the user who created it', () => {
       cy.contains('Create New Blog').click()
       cy.get('#title-input').type('A blog created by cypress')
-      cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
+      cy.get('#author-input').type('Cypress Author')
       cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
       cy.get('form').contains('Create').click()
       cy.contains('A blog created by cypress — Cypress Author')
@@ -94,7 +94,7 @@ describe('Blog app', () => {
     it('Remove button is not shown for other users', () => {
       cy.contains('Create New Blog').click()
       cy.get('#title-input').type('A blog created by cypress')
-      cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
+      cy.get('#author-input').type('Cypress Author')
       cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
       cy.get('form').contains('Create').click()
       cy.contains('Logout').click()
