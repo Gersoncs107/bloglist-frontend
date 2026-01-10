@@ -43,7 +43,7 @@ describe('Blog app', () => {
       cy.contains('Create New Blog').click()
       cy.get('#title-input').type('A blog created by cypress')
       cy.get('#author-input').type('Cypress Author')
-      cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
+      cy.get('#url-input').type('https://cypress.io')
       cy.get('form').contains('Create').click()
       cy.get('.blog').should('contain', 'A blog created by cypress').and('contain', 'Cypress Author')
     })
@@ -52,7 +52,7 @@ describe('Blog app', () => {
       cy.contains('Create New Blog').click()
       cy.get('#title-input').type('A blog created by cypress')
       cy.get('#author-input').type('Cypress Author')
-      cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
+      cy.get('#url-input').type('https://cypress.io')
       cy.get('form').contains('Create').click()
 
       // Maneira mais confiável - procura elementos que contenham as duas partes
@@ -79,7 +79,7 @@ describe('Blog app', () => {
       cy.contains('Create New Blog').click()
       cy.get('#title-input').type('A blog created by cypress')
       cy.get('#author-input').type('Cypress Author')
-      cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
+      cy.get('#url-input').type('https://cypress.io')
       cy.get('form').contains('Create').click()
       cy.contains('A blog created by cypress — Cypress Author')
       .find('#view-button')
@@ -95,7 +95,7 @@ describe('Blog app', () => {
       cy.contains('Create New Blog').click()
       cy.get('#title-input').type('A blog created by cypress')
       cy.get('#author-input').type('Cypress Author')
-      cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
+      cy.get('#url-input').type('https://cypress.io')
       cy.get('form').contains('Create').click()
       cy.contains('Logout').click()
       const anotherUser = {
