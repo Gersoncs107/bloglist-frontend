@@ -49,30 +49,30 @@ describe('Blog app', () => {
     })
 
     it.only('A blog can be liked', () => {
-    cy.contains('Create New Blog').click()
-    cy.get('input[placeholder="Enter blog title"]').type('A blog created by cypress')
-    cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
-    cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
-    cy.get('form').contains('Create').click()
+      cy.contains('Create New Blog').click()
+      cy.get('input[placeholder="Enter blog title"]').type('A blog created by cypress')
+      cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
+      cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
+      cy.get('form').contains('Create').click()
 
-    // Maneira mais confiável - procura elementos que contenham as duas partes
-    cy.get('.blog')
-      .should('contain', 'A blog created by cypress')
-      .and('contain', 'Cypress Author')
+      // Maneira mais confiável - procura elementos que contenham as duas partes
+      cy.get('.blog')
+        .should('contain', 'A blog created by cypress')
+        .and('contain', 'Cypress Author')
 
-    // Abre os detalhes
-    cy.contains('.blog', 'A blog created by cypress')
-      .find('#view-button')
-      .click()
+      // Abre os detalhes
+      cy.contains('.blog', 'A blog created by cypress')
+        .find('#view-button')
+        .click()
 
-    // Dá like
-    cy.contains('.blog', 'A blog created by cypress')
-      .find('#like-button')
-      .click()
+      // Dá like
+      cy.contains('.blog', 'A blog created by cypress')
+        .find('#like-button')
+        .click()
 
-    // Verifica o like
-    cy.contains('.blog', 'A blog created by cypress')
-      .should('contain', 'likes 1')
+      // Verifica o like
+      cy.contains('.blog', 'A blog created by cypress')
+        .should('contain', 'likes 1')
   })
 
     it('A blog can be deleted by the user who created it', () => {
