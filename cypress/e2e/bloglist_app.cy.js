@@ -72,7 +72,7 @@ describe('Blog app', () => {
 
       // Verifica o like
       cy.contains('.blog', 'A blog created by cypress')
-        .should('contain', 'likes 1')
+        .should('contain', 'Likes: 1')
   })
 
     it('A blog can be deleted by the user who created it', () => {
