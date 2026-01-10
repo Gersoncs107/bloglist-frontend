@@ -48,7 +48,7 @@ describe('Blog app', () => {
       cy.get('.blog').should('contain', 'A blog created by cypress').and('contain', 'Cypress Author')
     })
 
-    it.only('A blog can be liked', () => {
+    it('A blog can be liked', () => {
       cy.contains('Create New Blog').click()
       cy.get('#title-input').type('A blog created by cypress')
       cy.get('#author-input').type('Cypress Author')
