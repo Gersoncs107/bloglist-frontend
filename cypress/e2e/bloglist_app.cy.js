@@ -41,7 +41,7 @@ describe('Blog app', () => {
     })
     it('A blog can be created', () => {
       cy.contains('Create New Blog').click()
-      cy.get('input[placeholder="Enter blog title"]').type('A blog created by cypress')
+      cy.get('#title-input').type('A blog created by cypress')
       cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
       cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
       cy.get('form').contains('Create').click()
@@ -50,7 +50,7 @@ describe('Blog app', () => {
 
     it.only('A blog can be liked', () => {
       cy.contains('Create New Blog').click()
-      cy.get('input[placeholder="Enter blog title"]').type('A blog created by cypress')
+      cy.get('#title-input').type('A blog created by cypress')
       cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
       cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
       cy.get('form').contains('Create').click()
@@ -77,7 +77,7 @@ describe('Blog app', () => {
 
     it('A blog can be deleted by the user who created it', () => {
       cy.contains('Create New Blog').click()
-      cy.get('input[placeholder="Enter blog title"]').type('A blog created by cypress')
+      cy.get('#title-input').type('A blog created by cypress')
       cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
       cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
       cy.get('form').contains('Create').click()
@@ -93,7 +93,7 @@ describe('Blog app', () => {
     
     it('Remove button is not shown for other users', () => {
       cy.contains('Create New Blog').click()
-      cy.get('input[placeholder="Enter blog title"]').type('A blog created by cypress')
+      cy.get('#title-input').type('A blog created by cypress')
       cy.get('input[placeholder="Enter author name"]').type('Cypress Author')
       cy.get('input[placeholder="https://example.com"]').type('https://cypress.io')
       cy.get('form').contains('Create').click()
