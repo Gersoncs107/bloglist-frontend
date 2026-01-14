@@ -46,7 +46,7 @@ const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
   }
 
   return (
-    <div style={blogStyle} className="blog">
+    <div className="blog">
       <div style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
           <strong>{blog.title}</strong> by <em>{blog.author}</em>
