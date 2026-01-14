@@ -9,9 +9,10 @@ const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
   const canRemove = blog.user && user && blog.user.username === user.username
 
   const handleLike = async () => {
-    const userId = blog.user && typeof blog.user === 'object'
-      ? blog.user.id || blog.user._id
-      : blog.user
+    const userId =
+      blog.user && typeof blog.user === 'object'
+        ? blog.user.id || blog.user._id
+        : blog.user
 
     const updatedBlog = {
       user: userId,
@@ -31,25 +32,13 @@ const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
     }
   }
 
-  const blogStyle = {
-    padding: '15px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    marginBottom: '15px',
-    backgroundColor: '#f9f9f9',
-    boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-  }
-
-  const labelStyle = {
-    fontWeight: 'bold',
-    marginRight: '10px'
-  }
-
   return (
-    <div style={blogStyle} className="blog">
-      <div style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div className="blog">
+      <div className="blog-header">
         <div>
-          <strong>{blog.title}</strong> by <em>{blog.author}</em>
+          <span className="blog-title">{blog.title}</span>{' '}
+          by{' '}
+          <span className="blog-author">{blog.author}</span>
         </div>
         <button id="view-button" onClick={toggleVisibility}>
           {visible ? 'hide' : 'view'}
@@ -57,18 +46,30 @@ const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
       </div>
 
       {visible && (
-        <div style={{ marginTop: '10px', paddingLeft: '10px' }}>
-          <div><span style={labelStyle}>URL:</span> <a href={blog.url} target="_blank" rel="noopener noreferrer">{blog.url}</a></div>
-          <div style={{ marginTop: '8px' }}>
-            <span style={labelStyle}>Likes:</span> {likes}
-            <button id="like-button" style={{ marginLeft: '10px' }} onClick={handleLike}>like</button>
+        <div className="blog-details">
+          <div className="blog-detail-row">
+            <span className="blog-label">URL:</span>
+            <a href={blog.url} target="_blank" rel="noopener noreferrer">
+              {blog.url}
+            </a>
           </div>
-          <div style={{ marginTop: '8px' }}>
-            <span style={labelStyle}>Added by:</span> {blog.user?.name || 'unknown'}
+
+          <div className="blog-detail-row blog-like-section">
+            <span className="blog-label">Likes:</span>
+            {likes}
+            <button id="like-button" onClick={handleLike}>
+              like
+            </button>
           </div>
+
+          <div className="blog-detail-row">
+            <span className="blog-label">Added by:</span>
+            {blog.user?.name || 'unknown'}
+          </div>
+
           {canRemove && (
-            <div style={{ marginTop: '12px' }}>
-              <button id="remove-button" style={{ backgroundColor: '#d9534f', color: 'white' }} onClick={handleRemove}>
+            <div className="blog-remove-section">
+              <button id="remove-button" onClick={handleRemove}>
                 Remove
               </button>
             </div>

@@ -29,10 +29,78 @@ h1{
   margin-bottom: 10px;
 }
 
-/* .blog{
-    padding-top: 10;
-    padding-left: 2;
-    border: 'solid';
-    border-width: 1;
-    margin-bottom: 5;
-  } */
+.blog {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.blog-header {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1em;
+}
+
+.blog-title {
+  font-weight: bold;
+}
+
+.blog-author {
+  font-style: italic;
+  color: #555;
+}
+
+.blog-details {
+  margin-top: 16px;
+  padding-left: 12px;
+  line-height: 1.6;
+}
+
+.blog-detail-row {
+  margin-bottom: 12px;
+}
+
+.blog-label {
+  font-weight: bold;
+  margin-right: 10px;
+  display: inline-block;
+  min-width: 80px;
+}
+
+.blog-like-section button {
+  margin-left: 12px;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.blog-remove-section {
+  margin-top: 16px;
+}
+
+#remove-button {
+  background-color: #d9534f;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#remove-button:hover {
+  background-color: #c9302c;
+}
+
+#like-button {
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+#view-button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
