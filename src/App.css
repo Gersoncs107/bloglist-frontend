@@ -29,3 +29,11 @@ h1{
   margin-bottom: 10px;
 }
 
+.blog {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
