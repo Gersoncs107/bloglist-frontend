@@ -31,15 +31,6 @@ const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
     }
   }
 
-  const blogStyle = {
-    padding: '15px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    marginBottom: '15px',
-    backgroundColor: '#f9f9f9',
-    boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-  }
-
   const labelStyle = {
     fontWeight: 'bold',
     marginRight: '10px'
