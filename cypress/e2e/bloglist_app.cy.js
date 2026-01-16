@@ -147,8 +147,8 @@ describe('Blog app', () => {
 })
 
     it('Blogs are displayed in descending order of likes', () => {
-    cy.get('.blog').eq(0).should('contain', 'Second Blog by Author Two')
-    cy.get('.blog').eq(1).should('contain', 'Third Blog by Author Three')
+    cy.get('.blog').eq(0).should('contain', 'Second Blog by Author Two') //4 likes
+    cy.get('.blog').eq(1).should('contain', 'Third Blog by Author Three') // 3 likes
     cy.get('.blog').eq(2).should('contain', 'First Blog by Author One')   // 2 likes
     })
   })
