@@ -12,6 +12,9 @@ const BlogForm = ({ handleSubmit }) => {
       author,
       url
     })
+    setTitle('')
+    setAuthor('')
+    setUrl('')
   }
 
   return (
