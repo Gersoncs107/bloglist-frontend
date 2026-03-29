@@ -20,9 +20,7 @@ const App = () => {
   const blogFormRef = useRef()
 
   useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
-    )  
+    dispatch(initializeBlogs())  
   }, [user])
 
   useEffect(() => {
