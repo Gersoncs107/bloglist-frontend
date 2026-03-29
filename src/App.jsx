@@ -131,7 +131,7 @@ const logOut = () => {
   return (
     <div>
       <h1>Blogs</h1>
-      <Notification message={errorMessage} />
+      <Notification/>
 
       {!user && loginForm()} 
       {user && <div>
