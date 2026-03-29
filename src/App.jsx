@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { notify } from './reducers/notificationReducer'
 import Blog from './components/Blog'
 import './App.css'
 import Notification from './components/Notification'
