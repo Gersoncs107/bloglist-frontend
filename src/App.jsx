@@ -36,8 +36,7 @@ const App = () => {
 
   const addBlog = async ({ title, author, url }) => {
   if (!title.trim() || !author.trim() || !url.trim()) {
-    setErrorMessage('Title, author, and URL are required')
-    setTimeout(() => setErrorMessage(null), 3000)
+    dispatch(notify('All fields (title, author, url) are required', 5))
     return
   }
 
