@@ -47,10 +47,9 @@ const App = () => {
 
 
   try {
-    const returnedBlog = await blogService.create(blogObject)
+    const newBlog = await dispatch(createBlog({ title, author, url })) // ← thunk
     blogFormRef.current.toggleVisibility()
-    setBlogs(prevBlogs => prevBlogs.concat(returnedBlog))
-    dispatch(notify(`A new blog "${returnedBlog.title}" by ${returnedBlog.author} added`))
+    dispatch(notify(`A new blog "${newBlog.title}" by ${newBlog.author} added`))
   } catch (error) {
     console.error('Failed to create blog:', error)
     dispatch(notify('Failed to save blog. Check server or authentication.', 5))
@@ -137,7 +136,7 @@ const logOut = () => {
          {blogForm()}
          <div>
             <h2>blogs</h2>
-            {blogs
+            {[...blogs]
               .sort((a, b) => b.likes - a.likes) 
               .map(blog => 
                 <Blog 
