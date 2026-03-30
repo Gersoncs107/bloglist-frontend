@@ -10,11 +10,15 @@ const blogSlice = createSlice({
     },
     appendBlog(state, action) {
       state.push(action.payload)
+    },
+    updateBlog(state, action) {
+      const updatedBlog = action.payload
+      return state.map(blog => blog.id === updatedBlog.id ? updatedBlog : blog)
     }
   }
 })
 
-export const { setBlogs, appendBlog } = blogSlice.actions
+export const { setBlogs, appendBlog, updateBlog } = blogSlice.actions
 
 export const initializeBlogs = () => async dispatch => {
   const blogs = await blogService.getAll()
