@@ -40,7 +40,7 @@ const Blog = ({ blog, user}) => {
         <div style={{ marginTop: '10px', paddingLeft: '10px' }}>
           <div><span style={labelStyle}>URL:</span> <a href={blog.url} target="_blank" rel="noopener noreferrer">{blog.url}</a></div>
           <div style={{ marginTop: '8px' }}>
-            <span style={labelStyle}>Likes:</span> {likes}
+            <span style={labelStyle}>Likes:</span>{blog.likes}
             <button id="like-button" style={{ marginLeft: '10px' }} onClick={handleLike}>like</button>
           </div>
           <div style={{ marginTop: '8px' }}>
