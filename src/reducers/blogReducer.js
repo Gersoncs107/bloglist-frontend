@@ -35,4 +35,10 @@ export const createBlog = (blogObject) => async dispatch => {
   return newBlog
 }
 
+export const likeBlog = (id, blogObject) => async dispatch => {
+  const userId = blog.user && blog.user.id ? blog.user.id : null
+  const updatedBlog = await blogService.update(id, { ...blogObject, user: userId })
+  dispatch(updateBlog(updatedBlog))
+  return updatedBlog 
+}
 export default blogSlice.reducer
