@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { likeBlog, deleteBlog } from '../reducers/blogReducer'
 
-const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
+const Blog = ({ blog, user}) => {
   const [visible, setVisible] = useState(false)
   const dispatch = useDispatch()
 
@@ -16,7 +16,7 @@ const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
 
   const handleRemove = async () => {
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
-      await deleteBlog(blog.id)
+      await dispatch(deleteBlog(blog.id))
     }
   }
 
