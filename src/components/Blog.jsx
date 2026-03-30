@@ -4,27 +4,14 @@ import { likeBlog, deleteBlog } from '../reducers/blogReducer'
 
 const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
   const [visible, setVisible] = useState(false)
-  const [likes, setLikes] = useState(blog.likes)
+  const dispatch = useDispatch()
 
   const toggleVisibility = () => setVisible(!visible)
 
   const canRemove = blog.user && user && blog.user.username === user.username
 
   const handleLike = async () => {
-    const userId = blog.user && typeof blog.user === 'object'
-      ? blog.user.id || blog.user._id
-      : blog.user
-
-    const updatedBlog = {
-      user: userId,
-      likes: likes + 1,
-      author: blog.author,
-      title: blog.title,
-      url: blog.url
-    }
-
-    const response = await updateBlog(blog.id, updatedBlog)
-    setLikes(response.likes)
+    dispatch(likeBlog(blog))
   }
 
   const handleRemove = async () => {
