@@ -56,17 +56,6 @@ const App = () => {
   }
 }
 
-  const updateBlog = async (id, newObject) => {
-  const updated = await blogService.update(id, newObject)
-  dispatch(updateBlog(updated))
-  return updated
-}
-
-  const removeBlog = async (id) => {
-  await blogService.remove(id)
-  setBlogs(blogs.filter(b => b.id !== id))
-}
-
   const handleLogin = async (event) => {
   event.preventDefault()
   
@@ -142,9 +131,7 @@ const logOut = () => {
                 <Blog 
                   key={blog.id} 
                   blog={blog} 
-                  user={user} 
-                  updateBlog={updateBlog} 
-                  deleteBlog={removeBlog}
+                  user={user}
                 />
               )
             }
