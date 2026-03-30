@@ -14,11 +14,15 @@ const blogSlice = createSlice({
     updateBlog(state, action) {
       const updatedBlog = action.payload
       return state.map(blog => blog.id === updatedBlog.id ? updatedBlog : blog)
+    },
+    removeBlog(state, action) {
+      const idToRemove = action.payload
+      return state.filter(blog => blog.id !== idToRemove)
     }
   }
 })
 
-export const { setBlogs, appendBlog, updateBlog } = blogSlice.actions
+export const { setBlogs, appendBlog, updateBlog, removeBlog } = blogSlice.actions
 
 export const initializeBlogs = () => async dispatch => {
   const blogs = await blogService.getAll()
