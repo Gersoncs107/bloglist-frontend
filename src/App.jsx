@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { notify } from './reducers/notificationReducer'
 import { initializeBlogs, createBlog, likeBlog, deleteBlog } from './reducers/blogReducer'
+import { initializeUser, loginUser, logoutUser } from './reducers/userReducer'
 import Blog from './components/Blog'
 import './App.css'
 import Notification from './components/Notification'
@@ -38,12 +39,6 @@ const App = () => {
   if (!title.trim() || !author.trim() || !url.trim()) {
     dispatch(notify('All fields (title, author, url) are required', 5))
     return
-  }
-
-  const blogObject = {
-    title,
-    author,
-    url
   }
 
   try {
@@ -91,35 +86,29 @@ const App = () => {
     )
   }
 
-const logOut = () => {
-  window.localStorage.removeItem('loggedBlogAppUser')
-  setUser(null)
-}
-
   return (
     <div>
       <h1>Blogs</h1>
-      <Notification/>
-
-      {!user && loginForm()} 
-      {user && <div>
-       <p>{user.name} logged in <button onClick={logOut}>Logout</button></p>
-         {blogForm()}
-         <div>
+      <Notification />
+      {!user && loginForm()}
+      {user && (
+        <div>
+          <p>
+            {user.name} logged in
+            <button onClick={() => dispatch(logoutUser())}>Logout</button>
+          </p>
+          {blogForm()}
+          <div>
             <h2>blogs</h2>
             {[...blogs]
-              .sort((a, b) => b.likes - a.likes) 
-              .map(blog => 
-                <Blog 
-                  key={blog.id} 
-                  blog={blog} 
-                  user={user}
-                />
+              .sort((a, b) => b.likes - a.likes)
+              .map(blog =>
+                <Blog key={blog.id} blog={blog} user={user} />
               )
             }
-      </div>
-      </div>
-    }
+          </div>
+        </div>
+      )}
     </div>
   )
 }
