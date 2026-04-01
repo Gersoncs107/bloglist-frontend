@@ -19,7 +19,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(initializeUser())
-  })
+  }, [])
 
   useEffect(() => {
     dispatch(initializeBlogs())  
