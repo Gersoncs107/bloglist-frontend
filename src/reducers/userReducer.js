@@ -26,7 +26,6 @@ export const initializeUser = () => dispatch => {
   }
 }
 
-// Thunk: faz login, persiste no localStorage e atualiza a store
 export const loginUser = (credentials) => async dispatch => {
   const user = await loginService.login(credentials)
   window.localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
