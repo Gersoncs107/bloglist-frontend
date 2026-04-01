@@ -26,15 +26,6 @@ const App = () => {
     dispatch(initializeBlogs())  
   }, [user])
 
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      blogService.setToken(user.token)  // ← ESSENCIAL
-    }
-  }, [])
-
   const addBlog = async ({ title, author, url }) => {
   if (!title.trim() || !author.trim() || !url.trim()) {
     dispatch(notify('All fields (title, author, url) are required', 5))
