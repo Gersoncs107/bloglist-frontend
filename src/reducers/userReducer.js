@@ -17,7 +17,6 @@ const userSlice = createSlice({
 
 export const { setUser, clearUser } = userSlice.actions
 
-// Thunk: inicializa usuário a partir do localStorage
 export const initializeUser = () => dispatch => {
   const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
   if (loggedUserJSON) {
