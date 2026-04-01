@@ -61,36 +61,24 @@ const App = () => {
     const username = event.target.username.value
     const password = event.target.password.value
     try {
-      await dispatch(loginUser({ username, password }))  // ← substitui loginService direto
+      await dispatch(loginUser({ username, password }))
     } catch (exception) {
       dispatch(notify('Wrong credentials'))
     }
   }
 
-  const loginForm = () => (
+   const loginForm = () => (
     <form onSubmit={handleLogin}>
       <div>
         username
-          <input
-          id='username'
-          type="text"
-          value={username}
-          name="Username"
-          onChange={({ target }) => setUsername(target.value)}
-        />
+        <input id="username" type="text" name="username" />
       </div>
       <div>
         password
-          <input
-          id='password'
-          type="password"
-          value={password}
-          name="Password"
-          onChange={({ target }) => setPassword(target.value)}
-        />
+        <input id="password" type="password" name="password" />
       </div>
-      <button id='login-button' type="submit">login</button>
-    </form>      
+      <button id="login-button" type="submit">login</button>
+    </form>
   )
 
   const blogForm = () => {
