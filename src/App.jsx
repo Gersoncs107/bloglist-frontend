@@ -44,8 +44,6 @@ const App = () => {
     url
   }
 
-
-
   try {
     const newBlog = await dispatch(createBlog({ title, author, url })) // ← thunk
     blogFormRef.current.toggleVisibility()
