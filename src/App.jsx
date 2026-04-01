@@ -18,6 +18,10 @@ const App = () => {
   const blogFormRef = useRef()
 
   useEffect(() => {
+    dispatch(initializeUser())
+  })
+
+  useEffect(() => {
     dispatch(initializeBlogs())  
   }, [user])
 
