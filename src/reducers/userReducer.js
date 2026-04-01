@@ -34,7 +34,6 @@ export const loginUser = (credentials) => async dispatch => {
   return user
 }
 
-// Thunk: faz logout, limpa localStorage e a store
 export const logoutUser = () => dispatch => {
   window.localStorage.removeItem('loggedBlogAppUser')
   dispatch(clearUser())
