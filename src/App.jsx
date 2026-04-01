@@ -56,22 +56,16 @@ const App = () => {
   }
 }
 
-  const handleLogin = async (event) => {
-  event.preventDefault()
-  
-  try {
-    const user = await loginService.login({ username, password })
-
-    window.localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
-
-    blogService.setToken(user.token)  // ← ESSENCIAL
-    setUser(user)
-    setUsername('')
-    setPassword('')
-  } catch (exception) {
-    dispatch(notify('Wrong username or password', 5))
+   const handleLogin = async (event) => {
+    event.preventDefault()
+    const username = event.target.username.value
+    const password = event.target.password.value
+    try {
+      await dispatch(loginUser({ username, password }))  // ← substitui loginService direto
+    } catch (exception) {
+      dispatch(notify('Wrong credentials'))
+    }
   }
-}
 
   const loginForm = () => (
     <form onSubmit={handleLogin}>
