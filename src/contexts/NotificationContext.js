@@ -23,4 +23,12 @@ export const notificationProvider = ({ children }) => {
     )
 }
 
+export const useNotification = () => {
+    const notification = useContext(notificationContext)
+    if (notification === undefined) {
+        throw new Error('useNotification must be used within a NotificationProvider')
+    }
+    return notification
+}
+
 export default notificationContext
