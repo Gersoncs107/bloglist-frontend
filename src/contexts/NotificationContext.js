@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 
-const notificationContext = createContext()
+const NotificationContext = createContext()
 
 const notificationReducer = (state, action) => {
     switch (action.type) {
@@ -13,26 +13,26 @@ const notificationReducer = (state, action) => {
     }
 }
 
-export const notificationProvider = ({ children }) => {
+export const NotificationProvider = ({ children }) => {
     const [notification, dispatch] = useReducer(notificationReducer, null)
 
     return (
-        <notificationContext.Provider value={{ notification, dispatch }}>
+        <NotificationContext.Provider value={{ notification, dispatch }}>
             {children}
-        </notificationContext.Provider>
+        </NotificationContext.Provider>
     )
 }
 
 export const useNotification = () => {
-    const notification = useContext(notificationContext)
+    const notification = useContext(NotificationContext)
     if (notification === undefined) {
         throw new Error('useNotification must be used within a NotificationProvider')
     }
     return notification
 }
 
-export const usenotificationDispatch = () => {
-    const [, dispatch] = useContext(notificationContext)
+export const useNotificationDispatch = () => {
+    const [, dispatch] = useContext(NotificationContext)
 
     const notify = (message, seconds = 5) => {
     dispatch({ type: 'SET', payload: message })
@@ -43,4 +43,4 @@ export const usenotificationDispatch = () => {
 
 }
 
-export default notificationContext
+export default NotificationContext
