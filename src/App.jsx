@@ -39,7 +39,7 @@ const App = () => {
     notify(`A new blog "${newBlog.title}" by ${newBlog.author} added!`, 5)
   } catch (error) {
     console.error('Failed to create blog:', error)
-    dispatch(notify('Failed to save blog. Check server or authentication.', 5))
+    notify('Failed to create blog. Please try again.', 5)
   }
 }
 
@@ -50,7 +50,7 @@ const App = () => {
     try {
       await dispatch(loginUser({ username, password }))
     } catch (exception) {
-      dispatch(notify('Wrong credentials'))
+      notify('Wrong username or password', 5)
     }
   }
 
