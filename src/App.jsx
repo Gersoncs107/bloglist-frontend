@@ -36,7 +36,7 @@ const App = () => {
   try {
     const newBlog = await dispatch(createBlog({ title, author, url })) // ← thunk
     blogFormRef.current.toggleVisibility()
-    dispatch(notify(`A new blog "${newBlog.title}" by ${newBlog.author} added`))
+    notify(`A new blog "${newBlog.title}" by ${newBlog.author} added!`, 5)
   } catch (error) {
     console.error('Failed to create blog:', error)
     dispatch(notify('Failed to save blog. Check server or authentication.', 5))
