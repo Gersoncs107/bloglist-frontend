@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
+import { notificationProvider } from './contexts/NotificationContext'
 import App from './App'
 import store from './store'
 
