@@ -14,7 +14,6 @@ const App = () => {
   
   const dispatch = useDispatch()
   const notify = useNotificationDispatch()
-  const blogs = useSelector(state => state.blogs)
   const user = useSelector(state => state.user)
   const blogFormRef = useRef()
   const queryClient = useQueryClient()
@@ -22,6 +21,12 @@ const App = () => {
   useEffect(() => {
     dispatch(initializeUser())
   }, [])
+
+  const { data: blogs = [], isLoading, isError } = useQuery({
+    queryKey: ['blogs'],
+    queryFn: blogService.getAll,
+    retry: 1,
+  })
 
   useEffect(() => {
     dispatch(initializeBlogs())  
