@@ -17,6 +17,7 @@ const App = () => {
   const blogs = useSelector(state => state.blogs)
   const user = useSelector(state => state.user)
   const blogFormRef = useRef()
+  const queryClient = useQueryClient()
 
   useEffect(() => {
     dispatch(initializeUser())
