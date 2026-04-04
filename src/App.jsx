@@ -30,7 +30,6 @@ const App = () => {
   const newBlogMutation = useMutation({
     mutationFn: blogService.create,
     onSuccess: (newBlog) => {
-      // Atualiza o cache local sem novo fetch
       queryClient.setQueryData(['blogs'], blogs => [...blogs, newBlog])
       blogFormRef.current.toggleVisibility()
       notify(`A new blog "${newBlog.title}" by ${newBlog.author} added!`, 5)
@@ -45,7 +44,7 @@ const App = () => {
       notify('All fields are required to create a blog.', 5)
       return
     }
-    newBlogMutation.mutate({ title, author, url })  // ← dispara a mutation
+    newBlogMutation.mutate({ title, author, url })
   }
 
   const handleLogin = async (event) => {
