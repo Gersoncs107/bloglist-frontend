@@ -1,22 +1,21 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { useNotificationDispatch } from './contexts/NotificationContext'
-import { initializeBlogs, createBlog, likeBlog, deleteBlog } from './reducers/blogReducer'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'  // ← novo
+import { useNotificationDispatch } from './contexts/NotificationContext.jsx'
 import { initializeUser, loginUser, logoutUser } from './reducers/userReducer'
 import Blog from './components/Blog'
 import './App.css'
 import Notification from './components/Notification'
+import blogService from './services/blogs'
 import BlogForm from './components/BlogForm'
 import Togglable from './components/Togglable'
 
 const App = () => {
-  
   const dispatch = useDispatch()
   const notify = useNotificationDispatch()
   const user = useSelector(state => state.user)
   const blogFormRef = useRef()
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient() 
 
   useEffect(() => {
     dispatch(initializeUser())
@@ -31,6 +30,7 @@ const App = () => {
   const newBlogMutation = useMutation({
     mutationFn: blogService.create,
     onSuccess: (newBlog) => {
+      // Atualiza o cache local sem novo fetch
       queryClient.setQueryData(['blogs'], blogs => [...blogs, newBlog])
       blogFormRef.current.toggleVisibility()
       notify(`A new blog "${newBlog.title}" by ${newBlog.author} added!`, 5)
@@ -40,26 +40,15 @@ const App = () => {
     }
   })
 
-  useEffect(() => {
-    dispatch(initializeBlogs())  
-  }, [user])
-
-  const addBlog = async ({ title, author, url }) => {
-  if (!title.trim() || !author.trim() || !url.trim()) {
-    notify('All fields are required to create a blog.', 5)
-    return
+  const addBlog = ({ title, author, url }) => {
+    if (!title.trim() || !author.trim() || !url.trim()) {
+      notify('All fields are required to create a blog.', 5)
+      return
+    }
+    newBlogMutation.mutate({ title, author, url })  // ← dispara a mutation
   }
 
-  try {
-    newBlogMutation.mutate({ title, author, url })
-    notify(`A new blog "${newBlog.title}" by ${newBlog.author} added!`, 5)
-  } catch (error) {
-    console.error('Failed to create blog:', error)
-    notify('Failed to create blog. Please try again.', 5)
-  }
-}
-
-   const handleLogin = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault()
     const username = event.target.username.value
     const password = event.target.password.value
@@ -70,7 +59,7 @@ const App = () => {
     }
   }
 
-   const loginForm = () => (
+  const loginForm = () => (
     <form onSubmit={handleLogin}>
       <div>
         username
@@ -84,15 +73,14 @@ const App = () => {
     </form>
   )
 
-  const blogForm = () => {
-    
-    return (
-      <Togglable buttonLabel="Create New Blog" ref= {blogFormRef}>
+  const blogForm = () => (
+    <Togglable buttonLabel="Create New Blog" ref={blogFormRef}>
       <BlogForm handleSubmit={addBlog} />
+    </Togglable>
+  )
 
-      </Togglable>
-    )
-  }
+  if (isLoading) return <div>Loading blogs...</div>
+  if (isError) return <div>Failed to load blogs.</div>
 
   return (
     <div>
