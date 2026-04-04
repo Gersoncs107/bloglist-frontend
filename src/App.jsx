@@ -28,6 +28,18 @@ const App = () => {
     retry: 1,
   })
 
+  const newBlogMutation = useMutation({
+    mutationFn: blogService.create,
+    onSuccess: (newBlog) => {
+      queryClient.setQueryData(['blogs'], blogs => [...blogs, newBlog])
+      blogFormRef.current.toggleVisibility()
+      notify(`A new blog "${newBlog.title}" by ${newBlog.author} added!`, 5)
+    },
+    onError: () => {
+      notify('Failed to create blog. Please try again.', 5)
+    }
+  })
+
   useEffect(() => {
     dispatch(initializeBlogs())  
   }, [user])
