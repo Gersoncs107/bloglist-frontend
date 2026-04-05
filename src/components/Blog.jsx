@@ -1,16 +1,16 @@
 import { useState } from 'react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useDispatch } from 'react-redux'
-import { likeBlog, deleteBlog } from '../reducers/blogReducer'
+import { useMutation, useQueryClient } from '@tanstack/react-query'  // ← novo
+import blogService from '../services/blogs'                           // ← novo
 
-const Blog = ({ blog, user}) => {
+const Blog = ({ blog, user }) => {
   const [visible, setVisible] = useState(false)
-  const dispatch = useDispatch()
+  const queryClient = useQueryClient()
 
   const toggleVisibility = () => setVisible(!visible)
 
   const canRemove = blog.user && user && blog.user.username === user.username
 
+  // ── Mutation: like ──────────────────────────────────────────────────
   const likeMutation = useMutation({
     mutationFn: (blogToLike) => {
       const userId = blogToLike.user && typeof blogToLike.user === 'object'
@@ -32,7 +32,8 @@ const Blog = ({ blog, user}) => {
     }
   })
 
-   const deleteMutation = useMutation({
+  // ── Mutation: delete ─────────────────────────────────────────────────
+  const deleteMutation = useMutation({
     mutationFn: blogService.remove,
     onSuccess: () => {
       queryClient.setQueryData(['blogs'], blogs =>
@@ -41,9 +42,8 @@ const Blog = ({ blog, user}) => {
     }
   })
 
-
-  const handleLike = async () => {
-    await likeMutation.mutateAsync(blog)
+  const handleLike = () => {
+    likeMutation.mutate(blog)
   }
 
   const handleRemove = () => {
@@ -52,10 +52,7 @@ const Blog = ({ blog, user}) => {
     }
   }
 
-  const labelStyle = {
-    fontWeight: 'bold',
-    marginRight: '10px'
-  }
+  const labelStyle = { fontWeight: 'bold', marginRight: '10px' }
 
   return (
     <div className="blog">
@@ -70,17 +67,32 @@ const Blog = ({ blog, user}) => {
 
       {visible && (
         <div style={{ marginTop: '10px', paddingLeft: '10px' }}>
-          <div><span style={labelStyle}>URL:</span> <a href={blog.url} target="_blank" rel="noopener noreferrer">{blog.url}</a></div>
+          <div>
+            <span style={labelStyle}>URL:</span>
+            <a href={blog.url} target="_blank" rel="noopener noreferrer">{blog.url}</a>
+          </div>
           <div style={{ marginTop: '8px' }}>
-            <span style={labelStyle}>Likes:</span>{blog.likes}
-            <button id="like-button" style={{ marginLeft: '10px' }} onClick={handleLike}>like</button>
+            <span style={labelStyle}>Likes:</span> {blog.likes}
+            <button
+              id="like-button"
+              style={{ marginLeft: '10px' }}
+              onClick={handleLike}
+              disabled={likeMutation.isPending}   // ← evita duplo clique
+            >
+              like
+            </button>
           </div>
           <div style={{ marginTop: '8px' }}>
             <span style={labelStyle}>Added by:</span> {blog.user?.name || 'unknown'}
           </div>
           {canRemove && (
             <div style={{ marginTop: '12px' }}>
-              <button id="remove-button" style={{ backgroundColor: '#d9534f', color: 'white' }} onClick={handleRemove}>
+              <button
+                id="remove-button"
+                style={{ backgroundColor: '#d9534f', color: 'white' }}
+                onClick={handleRemove}
+                disabled={deleteMutation.isPending}  // ← evita duplo clique
+              >
                 Remove
               </button>
             </div>
