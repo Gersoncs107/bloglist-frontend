@@ -46,9 +46,9 @@ const Blog = ({ blog, user}) => {
     await likeMutation.mutateAsync(blog)
   }
 
-  const handleRemove = async () => {
+  const handleRemove = () => {
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
-      await dispatch(deleteBlog(blog.id))
+      deleteMutation.mutate(blog.id)
     }
   }
 
