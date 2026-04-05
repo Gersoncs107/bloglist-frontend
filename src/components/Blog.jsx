@@ -11,6 +11,10 @@ const Blog = ({ blog, user}) => {
 
   const canRemove = blog.user && user && blog.user.username === user.username
 
+  const likeMutation = useMutation({
+    
+  })
+
   const handleLike = async () => {
     dispatch(likeBlog(blog))
   }
