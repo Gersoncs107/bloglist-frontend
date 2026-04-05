@@ -12,11 +12,28 @@ const Blog = ({ blog, user}) => {
   const canRemove = blog.user && user && blog.user.username === user.username
 
   const likeMutation = useMutation({
-    
+    mutationFn: (blogToLike) => {
+      const userId = blogToLike.user && typeof blogToLike.user === 'object'
+        ? blogToLike.user.id || blogToLike.user._id
+        : blogToLike.user
+
+      return blogService.update(blogToLike.id, {
+        user: userId,
+        likes: blogToLike.likes + 1,
+        author: blogToLike.author,
+        title: blogToLike.title,
+        url: blogToLike.url
+      })
+    },
+    onSuccess: (updatedBlog) => {
+      queryClient.setQueryData(['blogs'], blogs =>
+        blogs.map(b => b.id === updatedBlog.id ? updatedBlog : b)
+      )
+    }
   })
 
   const handleLike = async () => {
-    dispatch(likeBlog(blog))
+    await likeMutation.mutateAsync(blog)
   }
 
   const handleRemove = async () => {
