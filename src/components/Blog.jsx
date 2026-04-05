@@ -32,6 +32,16 @@ const Blog = ({ blog, user}) => {
     }
   })
 
+   const deleteMutation = useMutation({
+    mutationFn: blogService.remove,
+    onSuccess: () => {
+      queryClient.setQueryData(['blogs'], blogs =>
+        blogs.filter(b => b.id !== blog.id)
+      )
+    }
+  })
+
+
   const handleLike = async () => {
     await likeMutation.mutateAsync(blog)
   }
