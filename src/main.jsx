@@ -8,7 +8,7 @@ const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
-    <UserProvider>                    {/* ← novo, substitui <Provider store> */}
+    <UserProvider>
       <NotificationProvider>
         <App />
       </NotificationProvider>
