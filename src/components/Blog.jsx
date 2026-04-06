@@ -75,7 +75,7 @@ const Blog = ({ blog, user }) => {
               id="like-button"
               style={{ marginLeft: '10px' }}
               onClick={handleLike}
-              disabled={likeMutation.isPending}   // ← evita duplo clique
+              disabled={likeMutation.isPending}
             >
               like
             </button>
