@@ -89,7 +89,7 @@ const Blog = ({ blog, user }) => {
                 id="remove-button"
                 style={{ backgroundColor: '#d9534f', color: 'white' }}
                 onClick={handleRemove}
-                disabled={deleteMutation.isPending}  // ← evita duplo clique
+                disabled={deleteMutation.isPending}
               >
                 Remove
               </button>
