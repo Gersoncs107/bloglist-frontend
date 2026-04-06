@@ -1,19 +1,18 @@
-import { createContext, useContext, useReducer } from "react";
-import { blogService } from "../services/blogs";
-import { userService } from "../services/users";
+import { createContext, useContext, useReducer } from 'react'
+import blogService from '../services/blogs'
+import loginService from '../services/login'
 
 const UserContext = createContext()
 
-const usereducer = (state, action) => {
-    switch (action.type) {
-        case 'SET':
-            return action.payload
-        case 'CLEAR':
-            return null
-        default:
-            return state
-    }
-
+const userReducer = (state, action) => {
+  switch (action.type) {
+    case 'SET':
+      return action.payload
+    case 'CLEAR':
+      return null
+    default:
+      return state
+  }
 }
 
 export const UserProvider = ({ children }) => {
@@ -26,9 +25,9 @@ export const UserProvider = ({ children }) => {
   )
 }
 
-export const useUSer = () => {
-    const [user] = useContext(UserContext)
-    return user
+export const useUser = () => {
+  const [user] = useContext(UserContext)
+  return user
 }
 
 export const useUserDispatch = () => {
