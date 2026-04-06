@@ -93,7 +93,7 @@ const App = () => {
         <div>
           <p>
             {user.name} logged in
-            <button onClick={() => dispatch(logoutUser())}>Logout</button>
+            <button onClick={logout}>Logout</button>
           </p>
           {blogForm()}
           <div>
