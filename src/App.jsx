@@ -11,10 +11,10 @@ import Togglable from './components/Togglable'
 
 const App = () => {
   const notify = useNotificationDispatch()
-  const user = useUSer()
+  const user = useUser()    
   const { initializeUser, login, logout } = useUserDispatch()
   const blogFormRef = useRef()
-  const queryClient = useQueryClient() 
+  const queryClient = useQueryClient()
 
   useEffect(() => {
     initializeUser()
@@ -51,8 +51,7 @@ const App = () => {
     const username = event.target.username.value
     const password = event.target.password.value
     try {
-      await login({ username, password })
-      notify(`Welcome back, ${username}!`, 5)
+      await login({ username, password })                   // ← era dispatch(loginUser(...))
     } catch (exception) {
       notify('Wrong username or password', 5)
     }
@@ -90,7 +89,7 @@ const App = () => {
         <div>
           <p>
             {user.name} logged in
-            <button onClick={logout}>Logout</button>
+            <button onClick={logout}>Logout</button>        {/* ← era dispatch(logoutUser()) */}
           </p>
           {blogForm()}
           <div>
