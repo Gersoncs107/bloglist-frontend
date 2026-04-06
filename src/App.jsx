@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { use, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'  // ← novo
 import { useNotificationDispatch } from './contexts/NotificationContext.jsx'
@@ -14,7 +14,7 @@ import Togglable from './components/Togglable'
 const App = () => {
   const dispatch = useDispatch()
   const notify = useNotificationDispatch()
-  const user = useSelector(state => state.user)
+  const user = useUSer()
   const blogFormRef = useRef()
   const queryClient = useQueryClient() 
 
