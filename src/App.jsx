@@ -19,7 +19,7 @@ const App = () => {
   const queryClient = useQueryClient() 
 
   useEffect(() => {
-    dispatch(initializeUser())
+    initializeUser()
   }, [])
 
   const { data: blogs = [], isLoading, isError } = useQuery({
