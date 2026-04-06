@@ -15,6 +15,7 @@ const App = () => {
   const dispatch = useDispatch()
   const notify = useNotificationDispatch()
   const user = useUSer()
+  const { initializeUser, login, logout } = useUserDispatch()
   const blogFormRef = useRef()
   const queryClient = useQueryClient() 
 
