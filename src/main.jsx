@@ -1,18 +1,17 @@
 import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { NotificationProvider } from './contexts/NotificationContext'
+import { NotificationProvider } from './contexts/NotificationContext.jsx'
+import { UserProvider } from './contexts/UserContext.jsx'                 // ← novo
 import App from './App'
-import store from './store'
 
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <NotificationProvider>
-          <App />
-        </NotificationProvider>
-      </QueryClientProvider>
-  </Provider>
+  <QueryClientProvider client={queryClient}>
+    <UserProvider>                    {/* ← novo, substitui <Provider store> */}
+      <NotificationProvider>
+        <App />
+      </NotificationProvider>
+    </UserProvider>
+  </QueryClientProvider>
 )
