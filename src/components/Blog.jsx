@@ -10,7 +10,6 @@ const Blog = ({ blog, user }) => {
 
   const canRemove = blog.user && user && blog.user.username === user.username
 
-  // ── Mutation: like ──────────────────────────────────────────────────
   const likeMutation = useMutation({
     mutationFn: (blogToLike) => {
       const userId = blogToLike.user && typeof blogToLike.user === 'object'
