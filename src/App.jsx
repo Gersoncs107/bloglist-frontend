@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'  // ← novo
 import { useNotificationDispatch } from './contexts/NotificationContext.jsx'
+import { useUSer, useUserDispatch } from './contexts/UserContext.jsx'
 import { initializeUser, loginUser, logoutUser } from './reducers/userReducer'
 import Blog from './components/Blog'
 import './App.css'
