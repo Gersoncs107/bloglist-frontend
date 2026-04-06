@@ -30,3 +30,33 @@ export const useUSer = () => {
     const [user] = useContext(UserContext)
     return user
 }
+
+export const useUserDispatch = () => {
+  const [, dispatch] = useContext(UserContext)
+
+  const initializeUser = () => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      dispatch({ type: 'SET', payload: user })
+      blogService.setToken(user.token)
+    }
+  }
+
+  const login = async (credentials) => {
+    const user = await loginService.login(credentials)
+    window.localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
+    blogService.setToken(user.token)
+    dispatch({ type: 'SET', payload: user })
+    return user
+  }
+
+  const logout = () => {
+    window.localStorage.removeItem('loggedBlogAppUser')
+    dispatch({ type: 'CLEAR' })
+  }
+
+  return { initializeUser, login, logout }
+}
+
+export default UserContext
