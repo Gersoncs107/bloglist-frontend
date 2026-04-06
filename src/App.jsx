@@ -51,7 +51,7 @@ const App = () => {
     const username = event.target.username.value
     const password = event.target.password.value
     try {
-      await login({ username, password })                   // ← era dispatch(loginUser(...))
+      await login({ username, password })
     } catch (exception) {
       notify('Wrong username or password', 5)
     }
@@ -89,7 +89,7 @@ const App = () => {
         <div>
           <p>
             {user.name} logged in
-            <button onClick={logout}>Logout</button>        {/* ← era dispatch(logoutUser()) */}
+            <button onClick={logout}>Logout</button>
           </p>
           {blogForm()}
           <div>
