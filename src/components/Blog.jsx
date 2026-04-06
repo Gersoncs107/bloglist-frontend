@@ -31,7 +31,6 @@ const Blog = ({ blog, user }) => {
     }
   })
 
-  // ── Mutation: delete ─────────────────────────────────────────────────
   const deleteMutation = useMutation({
     mutationFn: blogService.remove,
     onSuccess: () => {
