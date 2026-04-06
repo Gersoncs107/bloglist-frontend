@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'  // ← novo
-import blogService from '../services/blogs'                           // ← novo
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import blogService from '../services/blogs'                         
 
 const Blog = ({ blog, user }) => {
   const [visible, setVisible] = useState(false)
