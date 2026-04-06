@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNotificationDispatch } from './contexts/NotificationContext.jsx'
-import { useUser, useUserDispatch } from './contexts/UserContext.jsx'     // ← novo
+import { useUser, useUserDispatch } from './contexts/UserContext.jsx'
 import Blog from './components/Blog'
 import './App.css'
 import Notification from './components/Notification'
@@ -10,7 +10,6 @@ import BlogForm from './components/BlogForm'
 import Togglable from './components/Togglable'
 
 const App = () => {
-  const dispatch = useDispatch()
   const notify = useNotificationDispatch()
   const user = useUSer()
   const { initializeUser, login, logout } = useUserDispatch()
