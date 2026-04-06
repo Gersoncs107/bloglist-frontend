@@ -54,7 +54,8 @@ const App = () => {
     const username = event.target.username.value
     const password = event.target.password.value
     try {
-      await dispatch(loginUser({ username, password }))
+      await login({ username, password })
+      notify(`Welcome back, ${username}!`, 5)
     } catch (exception) {
       notify('Wrong username or password', 5)
     }
