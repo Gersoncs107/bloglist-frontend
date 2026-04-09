@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from 'react'
 import blogService from '../services/blogs'
 import loginService from '../services/login'
+import persistentUser from '../services/persistentUser'
 
 const UserContext = createContext()
 
