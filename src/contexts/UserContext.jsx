@@ -51,7 +51,7 @@ export const useUserDispatch = () => {
   }
 
   const logout = () => {
-    window.localStorage.removeItem('loggedBlogAppUser')
+    persistentUser.removeUser()
     dispatch({ type: 'CLEAR' })
   }
 
