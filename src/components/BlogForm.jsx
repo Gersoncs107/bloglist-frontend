@@ -13,9 +13,9 @@ const BlogForm = ({ handleSubmit }) => {
       author: author.inputProps.value,
       url:    url.inputProps.value
     })
-    setTitle('')
-    setAuthor('')
-    setUrl('')
+    title.reset()
+    author.reset()
+    url.reset()
   }
 
   return (
