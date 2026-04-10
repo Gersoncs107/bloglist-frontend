@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { use, useEffect, useRef } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNotificationDispatch } from './contexts/NotificationContext.jsx'
 import { useUser, useUserDispatch } from './contexts/UserContext.jsx'
@@ -58,6 +58,10 @@ const App = () => {
         username: username.value,
         password: password.value
       })
+      username.reset()
+      password.reset()
+
+
     } catch (exception) {
       notify('Wrong username or password', 5)
     }
