@@ -1,14 +1,14 @@
 import useField from '../hooks/useField'
 
 const BlogForm = ({ handleSubmit }) => {
-  const title = useField('text')
+  const title  = useField('text')
   const author = useField('text')
-  const url = useField('url')
+  const url    = useField('url')
 
   const onSubmit = (e) => {
     e.preventDefault()
     handleSubmit({
-       title:  title.inputProps.value,
+      title:  title.inputProps.value,
       author: author.inputProps.value,
       url:    url.inputProps.value
     })
@@ -22,42 +22,21 @@ const BlogForm = ({ handleSubmit }) => {
       <div>
         <label>
           Title:
-          <input
-            id='title-input'
-            type="text"
-            value={title}
-            onChange={({ target }) => setTitle(target.value)}
-            placeholder="Enter blog title"
-          />
+          <input id="title-input" {...title.inputProps} placeholder="Enter blog title" />
         </label>
       </div>
-
       <div>
         <label>
           Author:
-          <input
-            id='author-input'
-            type="text"
-            value={author}
-            onChange={({ target }) => setAuthor(target.value)}
-            placeholder="Enter author name"
-          />
+          <input id="author-input" {...author.inputProps} placeholder="Enter author name" />
         </label>
       </div>
-
       <div>
         <label>
           URL:
-          <input
-            id='url-input'
-            type="url"
-            value={url}
-            onChange={({ target }) => setUrl(target.value)}
-            placeholder="https://example.com"
-          />
+          <input id="url-input" {...url.inputProps} placeholder="https://example.com" />
         </label>
       </div>
-
       <button type="submit">Create</button>
     </form>
   )
