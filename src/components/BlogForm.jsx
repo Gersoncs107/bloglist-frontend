@@ -2,16 +2,16 @@ import { useState } from 'react'
 import useField from '../hooks/useField'
 
 const BlogForm = ({ handleSubmit }) => {
-  const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
-  const [url, setUrl] = useState('')
+  const title = useField('text')
+  const author = useField('text')
+  const url = useField('url')
 
   const onSubmit = (e) => {
     e.preventDefault()
     handleSubmit({
-      title,
-      author,
-      url
+       title:  title.inputProps.value,
+      author: author.inputProps.value,
+      url:    url.inputProps.value
     })
     setTitle('')
     setAuthor('')
