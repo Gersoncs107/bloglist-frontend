@@ -71,11 +71,11 @@ const App = () => {
     <form onSubmit={handleLogin}>
       <div>
         username
-        <input id="username" type="text" name="username" />
+        <input id="username" {...username.inputProps} />
       </div>
       <div>
         password
-        <input id="password" type="password" name="password" />
+        <input id="password" {...password.inputProps} />
       </div>
       <button id="login-button" type="submit">login</button>
     </form>
