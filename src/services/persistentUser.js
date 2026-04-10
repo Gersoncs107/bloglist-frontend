@@ -1,4 +1,4 @@
-const KEY = 'loggedBlogAppUser'
+const KEY = 'loggedBlogappUser'
 
 const getUser = () => {
   const userJSON = window.localStorage.getItem(KEY)
