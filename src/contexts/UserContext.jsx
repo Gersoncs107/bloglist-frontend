@@ -44,7 +44,7 @@ export const useUserDispatch = () => {
 
   const login = async (credentials) => {
     const user = await loginService.login(credentials)
-    window.localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
+    persistentUser.saveUser(user)
     blogService.setToken(user.token)
     dispatch({ type: 'SET', payload: user })
     return user
