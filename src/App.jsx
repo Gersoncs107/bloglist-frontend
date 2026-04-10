@@ -17,6 +17,9 @@ const App = () => {
   const blogFormRef = useRef()
   const queryClient = useQueryClient()
 
+  const username = useField('text')
+  const password = useField('password')
+
   useEffect(() => {
     initializeUser()
   }, [])
