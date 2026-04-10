@@ -51,21 +51,18 @@ const App = () => {
   }
 
   const handleLogin = async (event) => {
-    event.preventDefault()
-
-    try {
-      await login({
-        username: username.value,
-        password: password.value
-      })
-      username.reset()
-      password.reset()
-
-
-    } catch (exception) {
-      notify('Wrong username or password', 5)
-    }
+  event.preventDefault()
+  try {
+    await login({
+      username: username.inputProps.value,
+      password: password.inputProps.value
+    })
+    username.reset()
+    password.reset()
+  } catch (exception) {
+    notify('Wrong username or password', 5)
   }
+}
 
   const loginForm = () => (
     <form onSubmit={handleLogin}>
