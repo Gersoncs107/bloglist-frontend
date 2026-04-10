@@ -52,10 +52,12 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    const username = event.target.username.value
-    const password = event.target.password.value
+
     try {
-      await login({ username, password })
+      await login({
+        username: username.value,
+        password: password.value
+      })
     } catch (exception) {
       notify('Wrong username or password', 5)
     }
