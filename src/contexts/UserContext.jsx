@@ -35,9 +35,8 @@ export const useUserDispatch = () => {
   const [, dispatch] = useContext(UserContext)
 
   const initializeUser = () => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
+    const user = persistentUser.getUser()
+    if (user) {
       dispatch({ type: 'SET', payload: user })
       blogService.setToken(user.token)
     }
