@@ -6,6 +6,7 @@ import useField from './hooks/useField.js'
 import NavBar from './components/NavBar'
 import BlogsView from './components/BlogsView'
 import UsersView from './components/UsersView'
+import UserView from './components/UserView.jsx'
 import Notification from './components/Notification'
 import './App.css'
 
@@ -63,6 +64,7 @@ const App = () => {
             <Routes>
               <Route path="/"      element={<BlogsView user={user} />} />
               <Route path="/users" element={<UsersView />} />
+              <Route path="/users/:id" element={<UserView />} />
               <Route path="*"      element={<Navigate to="/" />} />
             </Routes>
           )
