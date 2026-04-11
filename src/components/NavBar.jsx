@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 
-import { Link } from 'react-router-dom'
-
 const NavBar = ({ user, logout }) => {
   return (
     <nav style={{
