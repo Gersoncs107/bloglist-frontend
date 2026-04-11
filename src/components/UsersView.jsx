@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
 import userService from '../services/users'
 
 const UsersView = () => {
@@ -25,7 +26,9 @@ const UsersView = () => {
         <tbody>
           {users.map(user => (
             <tr key={user.id} style={{ borderBottom: '1px solid #e0e0e0' }}>
-              <td style={tdStyle}>{user.name}</td>
+              <td style={tdStyle}>
+                <Link to={`/users/${user.id}`}>{user.name}</Link>
+              </td>
               <td style={tdStyle}>{user.username}</td>
               <td style={tdStyle}>{user.blogs ? user.blogs.length : 0}</td>
             </tr>
