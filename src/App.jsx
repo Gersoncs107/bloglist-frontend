@@ -64,6 +64,7 @@ const App = () => {
           : (
             <Routes>
               <Route path="/"      element={<BlogsView user={user} />} />
+              <Route path="/blogs/:id" element={<BlogView user={user} />} />
               <Route path="/users" element={<UsersView />} />
               <Route path="/users/:id" element={<UserView />} />
               <Route path="*"      element={<Navigate to="/" />} />
