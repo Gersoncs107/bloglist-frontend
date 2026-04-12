@@ -1,58 +1,8 @@
-import { useState } from 'react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import blogService from '../services/blogs'                         
+import { Link } from "react-router-dom"                 
 
-const Blog = ({ blog, user }) => {
-  const [visible, setVisible] = useState(false)
-  const queryClient = useQueryClient()
-
-  const toggleVisibility = () => setVisible(!visible)
-
-  const canRemove = blog.user && user && blog.user.username === user.username
-
-  const likeMutation = useMutation({
-    mutationFn: (blogToLike) => {
-      const userId = blogToLike.user && typeof blogToLike.user === 'object'
-        ? blogToLike.user.id || blogToLike.user._id
-        : blogToLike.user
-
-      return blogService.update(blogToLike.id, {
-        user: userId,
-        likes: blogToLike.likes + 1,
-        author: blogToLike.author,
-        title: blogToLike.title,
-        url: blogToLike.url
-      })
-    },
-    onSuccess: (updatedBlog) => {
-      queryClient.setQueryData(['blogs'], blogs =>
-        blogs.map(b => b.id === updatedBlog.id ? updatedBlog : b)
-      )
-    }
-  })
-
-  const deleteMutation = useMutation({
-    mutationFn: blogService.remove,
-    onSuccess: () => {
-      queryClient.setQueryData(['blogs'], blogs =>
-        blogs.filter(b => b.id !== blog.id)
-      )
-    }
-  })
-
-  const handleLike = () => {
-    likeMutation.mutate(blog)
-  }
-
-  const handleRemove = () => {
-    if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
-      deleteMutation.mutate(blog.id)
-    }
-  }
-
-  const labelStyle = { fontWeight: 'bold', marginRight: '10px' }
-
-  return (
+const Blog = ({ blog }) => {
+  
+return (
     <div className="blog">
       <div style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
