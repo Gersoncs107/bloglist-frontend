@@ -33,7 +33,6 @@ const BlogView = () => {
         ...old,
         likes: updatedBlog.likes
       }))
-      // invalida a lista de blogs também para manter consistência
       queryClient.invalidateQueries({ queryKey: ['blogs'] })
     }
   })
