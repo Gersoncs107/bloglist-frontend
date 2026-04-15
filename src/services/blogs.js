@@ -44,4 +44,4 @@ const addComment = async (id, comment) => {
   return response.data
 }
 
-export default { getAll, create, update, setToken, remove, addComment }
+export default { getAll, getById, create, update, setToken, remove, addComment }
