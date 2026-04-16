@@ -9,8 +9,7 @@ ho
   static getDerivedStateFromError(error) {
     return { hasError: true, error }
   }
-
-  // Chamado após o erro ser capturado — útil para logging
+ging
   componentDidCatch(error, info) {
     console.error('ErrorBoundary caught:', error, info)
   }
