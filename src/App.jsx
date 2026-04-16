@@ -58,6 +58,8 @@ const App = () => {
   return (
     <div>
       <NavBar user={user} logout={logout} />
+
+      <ErrorBoundary reportTo="Gerson#0001">
       <div style={{ padding: '0 24px' }}>
         <Notification />
         {!user
@@ -73,6 +75,7 @@ const App = () => {
           )
         }
       </div>
+      </ErrorBoundary>
     </div>
   )
 }
