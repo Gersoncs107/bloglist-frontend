@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { useNotificationDispatch } from './contexts/NotificationContext.jsx'
 import { useUser, useUserDispatch } from './contexts/UserContext.jsx'
 import useField from './hooks/useField.js'
