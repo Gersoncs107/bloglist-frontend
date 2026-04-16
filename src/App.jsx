@@ -9,6 +9,7 @@ import BlogView from './components/BlogView.jsx'
 import UsersView from './components/UsersView'
 import UserView from './components/UserView.jsx'
 import Notification from './components/Notification'
+import ErrorBoundary from './components/ErrorBoundary.jsx'
 import './App.css'
 
 const App = () => {
