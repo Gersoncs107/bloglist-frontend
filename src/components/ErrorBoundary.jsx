@@ -5,8 +5,7 @@ class ErrorBoundary extends Component {
     super(props)
     this.state = { hasError: false, error: null }
   }
-
-  // Chamado quando um erro ocorre durante o render de um filho
+ho
   static getDerivedStateFromError(error) {
     return { hasError: true, error }
   }
