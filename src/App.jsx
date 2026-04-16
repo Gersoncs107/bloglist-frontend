@@ -11,6 +11,7 @@ import UserView from './components/UserView.jsx'
 import Notification from './components/Notification'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
 import './App.css'
+import NotFound from './components/NotFound.jsx'
 
 const App = () => {
   const notify = useNotificationDispatch()
@@ -70,7 +71,7 @@ const App = () => {
               <Route path="/blogs/:id" element={<BlogView user={user} />} />
               <Route path="/users" element={<UsersView />} />
               <Route path="/users/:id" element={<UserView />} />
-              <Route path="*"      element={<Navigate to="/" />} />
+              <Route path="*"      element={<NotFound />} />
             </Routes>
           )
         }
