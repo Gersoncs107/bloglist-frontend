@@ -10,6 +10,8 @@
     "preview": "vite preview",
     "test": "jest",
     "eslint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "cypress:open": "cypress open"
   },
   "dependencies": {
