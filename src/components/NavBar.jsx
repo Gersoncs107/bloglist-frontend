@@ -34,9 +34,9 @@ const NavBar = ({ user, logout }) => {
         </Link>
         {user && (
           <>
-            <Link to="/new" style={navLinkStyle}>
+            <Link to="/" style={navLinkStyle}>
               NEW BLOG
-            </Link>
+            </Link>{' '}
             <span
               onClick={logout}
               style={{ ...navLinkStyle, cursor: 'pointer' }}
