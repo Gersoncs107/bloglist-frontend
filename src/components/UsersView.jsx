@@ -3,14 +3,18 @@ import { Link } from 'react-router-dom'
 import userService from '../services/users'
 
 const UsersView = () => {
-  const { data: users = [], isLoading, isError } = useQuery({
+  const {
+    data: users = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['users'],
     queryFn: userService.getAll,
     retry: 1,
   })
 
   if (isLoading) return <div>Loading users...</div>
-  if (isError)   return <div>Failed to load users.</div>
+  if (isError) return <div>Failed to load users.</div>
 
   return (
     <div>
@@ -24,7 +28,7 @@ const UsersView = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map(user => (
+          {users.map((user) => (
             <tr key={user.id} style={{ borderBottom: '1px solid #e0e0e0' }}>
               <td style={tdStyle}>
                 <Link to={`/users/${user.id}`}>{user.name}</Link>
@@ -43,7 +47,7 @@ const thStyle = {
   textAlign: 'left',
   padding: '12px 8px',
   fontWeight: 'bold',
-  borderBottom: '2px solid #e0e0e0'
+  borderBottom: '2px solid #e0e0e0',
 }
 
 const tdStyle = {

@@ -5,11 +5,11 @@ class ErrorBoundary extends Component {
     super(props)
     this.state = { hasError: false, error: null }
   }
-ho
+  ho
   static getDerivedStateFromError(error) {
     return { hasError: true, error }
   }
-ging
+  ging
   componentDidCatch(error, info) {
     console.error('ErrorBoundary caught:', error, info)
   }
@@ -21,10 +21,8 @@ ging
           <h2>Something went wrong :(</h2>
           <p>
             Please make a bug report to{' '}
-            <strong>
-              {this.props.reportTo || 'the development team'}
-            </strong>{' '}
-            on Discord
+            <strong>{this.props.reportTo || 'the development team'}</strong> on
+            Discord
           </p>
         </div>
       )

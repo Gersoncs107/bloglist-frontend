@@ -24,19 +24,19 @@ export const NotificationProvider = ({ children }) => {
 }
 
 export const useNotification = () => {
-    const [notification] = useContext(NotificationContext)
-    return notification
+  const [notification] = useContext(NotificationContext)
+  return notification
 }
 
 export const useNotificationDispatch = () => {
-    const [, dispatch] = useContext(NotificationContext)
-    
-    const notify = (message, seconds = 5) => {
-        dispatch({ type: 'SET', payload: message })
-        setTimeout(() => dispatch({ type: 'CLEAR' }), seconds * 1000)
-    }
-    
-    return notify
+  const [, dispatch] = useContext(NotificationContext)
+
+  const notify = (message, seconds = 5) => {
+    dispatch({ type: 'SET', payload: message })
+    setTimeout(() => dispatch({ type: 'CLEAR' }), seconds * 1000)
+  }
+
+  return notify
 }
 
 export default NotificationContext

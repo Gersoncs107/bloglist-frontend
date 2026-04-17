@@ -5,15 +5,19 @@ import userService from '../services/users'
 const UserView = () => {
   const { id } = useParams()
 
-  const { data: users = [], isLoading, isError } = useQuery({
+  const {
+    data: users = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['users'],
     queryFn: userService.getAll,
   })
 
   if (isLoading) return <div>Loading...</div>
-  if (isError)   return <div>Failed to load user.</div>
+  if (isError) return <div>Failed to load user.</div>
 
-  const user = users.find(u => u.id === id)
+  const user = users.find((u) => u.id === id)
 
   if (!user) return <div>User not found.</div>
 
@@ -22,9 +26,8 @@ const UserView = () => {
       <h2>{user.name}</h2>
       <h3>added blogs</h3>
       <ul>
-        {user.blogs && user.blogs.map(blog => (
-          <li key={blog.id}>{blog.title}</li>
-        ))}
+        {user.blogs &&
+          user.blogs.map((blog) => <li key={blog.id}>{blog.title}</li>)}
       </ul>
       <Link to="/users">← back to users</Link>
     </div>

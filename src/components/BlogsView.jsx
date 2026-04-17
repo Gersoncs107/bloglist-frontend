@@ -11,7 +11,11 @@ const BlogsView = ({ user }) => {
   const queryClient = useQueryClient()
   const blogFormRef = useRef()
 
-  const { data: blogs = [], isLoading, isError } = useQuery({
+  const {
+    data: blogs = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['blogs'],
     queryFn: blogService.getAll,
     retry: 1,
@@ -20,13 +24,13 @@ const BlogsView = ({ user }) => {
   const newBlogMutation = useMutation({
     mutationFn: blogService.create,
     onSuccess: (newBlog) => {
-      queryClient.setQueryData(['blogs'], blogs => [...blogs, newBlog])
+      queryClient.setQueryData(['blogs'], (blogs) => [...blogs, newBlog])
       blogFormRef.current.toggleVisibility()
       notify(`A new blog "${newBlog.title}" by ${newBlog.author} added!`, 5)
     },
     onError: () => {
       notify('Failed to create blog. Please try again.', 5)
-    }
+    },
   })
 
   const addBlog = ({ title, author, url }) => {
@@ -38,7 +42,7 @@ const BlogsView = ({ user }) => {
   }
 
   if (isLoading) return <div>Loading blogs...</div>
-  if (isError)   return <div>Failed to load blogs.</div>
+  if (isError) return <div>Failed to load blogs.</div>
 
   return (
     <div>
@@ -50,10 +54,9 @@ const BlogsView = ({ user }) => {
       <div style={{ marginTop: '16px' }}>
         {[...blogs]
           .sort((a, b) => b.likes - a.likes)
-          .map(blog =>
+          .map((blog) => (
             <Blog key={blog.id} blog={blog} user={user} />
-          )
-        }
+          ))}
       </div>
     </div>
   )

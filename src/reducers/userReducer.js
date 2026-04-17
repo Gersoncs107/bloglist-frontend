@@ -11,13 +11,13 @@ const userSlice = createSlice({
     },
     clearUser() {
       return null
-    }
-  }
+    },
+  },
 })
 
 export const { setUser, clearUser } = userSlice.actions
 
-export const initializeUser = () => dispatch => {
+export const initializeUser = () => (dispatch) => {
   const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
   if (loggedUserJSON) {
     const user = JSON.parse(loggedUserJSON)
@@ -26,7 +26,7 @@ export const initializeUser = () => dispatch => {
   }
 }
 
-export const loginUser = (credentials) => async dispatch => {
+export const loginUser = (credentials) => async (dispatch) => {
   const user = await loginService.login(credentials)
   window.localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
   blogService.setToken(user.token)
@@ -34,7 +34,7 @@ export const loginUser = (credentials) => async dispatch => {
   return user
 }
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = () => (dispatch) => {
   window.localStorage.removeItem('loggedBlogAppUser')
   dispatch(clearUser())
 }

@@ -8,7 +8,11 @@ const BlogView = () => {
   const queryClient = useQueryClient()
   const comment = useField('text')
 
-  const { data: blog, isLoading, isError } = useQuery({
+  const {
+    data: blog,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['blog', id],
     queryFn: () => blogService.getById(id),
     retry: 1,
@@ -16,25 +20,26 @@ const BlogView = () => {
 
   const likeMutation = useMutation({
     mutationFn: (blogToLike) => {
-      const userId = blogToLike.user && typeof blogToLike.user === 'object'
-        ? blogToLike.user.id || blogToLike.user._id
-        : blogToLike.user
+      const userId =
+        blogToLike.user && typeof blogToLike.user === 'object'
+          ? blogToLike.user.id || blogToLike.user._id
+          : blogToLike.user
 
       return blogService.update(blogToLike.id, {
         user: userId,
         likes: blogToLike.likes + 1,
         author: blogToLike.author,
         title: blogToLike.title,
-        url: blogToLike.url
+        url: blogToLike.url,
       })
     },
     onSuccess: (updatedBlog) => {
-      queryClient.setQueryData(['blog', id], old => ({
+      queryClient.setQueryData(['blog', id], (old) => ({
         ...old,
-        likes: updatedBlog.likes
+        likes: updatedBlog.likes,
       }))
       queryClient.invalidateQueries({ queryKey: ['blogs'] })
-    }
+    },
   })
 
   const commentMutation = useMutation({
@@ -42,7 +47,7 @@ const BlogView = () => {
     onSuccess: (updatedBlog) => {
       queryClient.setQueryData(['blog', id], updatedBlog)
       comment.reset()
-    }
+    },
   })
 
   const handleComment = (e) => {
@@ -52,14 +57,14 @@ const BlogView = () => {
   }
 
   if (isLoading) return <div>Loading blog...</div>
-  if (isError)   return <div>Blog not found.</div>
+  if (isError) return <div>Blog not found.</div>
 
   const containerStyle = {
     border: '1px solid #e0e0e0',
     borderRadius: '8px',
     padding: '32px',
     maxWidth: '700px',
-    marginTop: '16px'
+    marginTop: '16px',
   }
 
   return (
@@ -67,13 +72,22 @@ const BlogView = () => {
       <h2>{blog.title}</h2>
       <p style={{ margin: '4px 0' }}>by {blog.author}</p>
       <p style={{ margin: '8px 0' }}>
-        <a href={blog.url} target="_blank" rel="noopener noreferrer">{blog.url}</a>
+        <a href={blog.url} target="_blank" rel="noopener noreferrer">
+          {blog.url}
+        </a>
       </p>
       <p style={{ margin: '8px 0', color: '#555' }}>
         Added by {blog.user?.name || 'unknown'}
       </p>
 
-      <p style={{ margin: '16px 0', display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <p
+        style={{
+          margin: '16px 0',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+        }}
+      >
         <strong>{blog.likes} likes</strong>
         <button
           onClick={() => likeMutation.mutate(blog)}
@@ -83,7 +97,7 @@ const BlogView = () => {
             border: '1px solid #aaa',
             borderRadius: '4px',
             cursor: 'pointer',
-            backgroundColor: 'white'
+            backgroundColor: 'white',
           }}
         >
           LIKE
@@ -92,11 +106,19 @@ const BlogView = () => {
 
       <h3 style={{ marginTop: '24px' }}>comments</h3>
 
-      <form onSubmit={handleComment} style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+      <form
+        onSubmit={handleComment}
+        style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}
+      >
         <input
           {...comment.inputProps}
           placeholder="write a comment..."
-          style={{ flex: 1, padding: '6px 10px', border: '1px solid #ccc', borderRadius: '4px' }}
+          style={{
+            flex: 1,
+            padding: '6px 10px',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+          }}
         />
         <button
           type="submit"
@@ -107,7 +129,7 @@ const BlogView = () => {
             color: 'white',
             border: 'none',
             borderRadius: '4px',
-            cursor: 'pointer'
+            cursor: 'pointer',
           }}
         >
           add comment
@@ -115,13 +137,17 @@ const BlogView = () => {
       </form>
 
       <ul>
-        {blog.comments && blog.comments.length > 0
-          ? blog.comments.map((c, i) => <li key={i}>{c}</li>)
-          : <li style={{ color: '#888' }}>No comments yet.</li>
-        }
+        {blog.comments && blog.comments.length > 0 ? (
+          blog.comments.map((c, i) => <li key={i}>{c}</li>)
+        ) : (
+          <li style={{ color: '#888' }}>No comments yet.</li>
+        )}
       </ul>
 
-      <Link to="/" style={{ display: 'inline-block', marginTop: '16px', color: '#1a73e8' }}>
+      <Link
+        to="/"
+        style={{ display: 'inline-block', marginTop: '16px', color: '#1a73e8' }}
+      >
         ← back to blogs
       </Link>
     </div>

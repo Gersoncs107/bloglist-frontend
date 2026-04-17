@@ -11,9 +11,18 @@ describe('<BlogForm />', () => {
     render(<BlogForm handleSubmit={createBlogHandler} />)
 
     // Preenche os campos
-    await user.type(screen.getByPlaceholderText('Enter blog title'), 'Testing com Jest')
-    await user.type(screen.getByPlaceholderText('Enter author name'), 'Maria Dev')
-    await user.type(screen.getByPlaceholderText('https://example.com'), 'https://mariajest.dev')
+    await user.type(
+      screen.getByPlaceholderText('Enter blog title'),
+      'Testing com Jest'
+    )
+    await user.type(
+      screen.getByPlaceholderText('Enter author name'),
+      'Maria Dev'
+    )
+    await user.type(
+      screen.getByPlaceholderText('https://example.com'),
+      'https://mariajest.dev'
+    )
 
     // Envia o formulário
     await user.click(screen.getByText('Create'))
@@ -23,7 +32,7 @@ describe('<BlogForm />', () => {
     expect(createBlogHandler).toHaveBeenCalledWith({
       title: 'Testing com Jest',
       author: 'Maria Dev',
-      url: 'https://mariajest.dev'
+      url: 'https://mariajest.dev',
     })
   })
 })

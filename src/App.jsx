@@ -30,7 +30,7 @@ const App = () => {
     try {
       await login({
         username: username.inputProps.value,
-        password: password.inputProps.value
+        password: password.inputProps.value,
       })
       username.reset()
       password.reset()
@@ -51,7 +51,9 @@ const App = () => {
           password
           <input id="password" {...password.inputProps} />
         </div>
-        <button id="login-button" type="submit">login</button>
+        <button id="login-button" type="submit">
+          login
+        </button>
       </form>
     </div>
   )
@@ -61,21 +63,20 @@ const App = () => {
       <NavBar user={user} logout={logout} />
 
       <ErrorBoundary reportTo="Gerson#0001">
-      <div style={{ padding: '0 24px' }}>
-        <Notification />
-        {!user
-          ? loginForm()
-          : (
+        <div style={{ padding: '0 24px' }}>
+          <Notification />
+          {!user ? (
+            loginForm()
+          ) : (
             <Routes>
-              <Route path="/"      element={<BlogsView user={user} />} />
+              <Route path="/" element={<BlogsView user={user} />} />
               <Route path="/blogs/:id" element={<BlogView user={user} />} />
               <Route path="/users" element={<UsersView />} />
               <Route path="/users/:id" element={<UserView />} />
-              <Route path="*"      element={<NotFound />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
-          )
-        }
-      </div>
+          )}
+        </div>
       </ErrorBoundary>
     </div>
   )
